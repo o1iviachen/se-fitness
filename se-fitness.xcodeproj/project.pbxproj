@@ -1,0 +1,576 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		5802D7AC2DF499C200A32622 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5802D78D2DF499C100A32622 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5802D7942DF499C100A32622;
+			remoteInfo = "se-fitness";
+		};
+		5802D7B62DF499C200A32622 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5802D78D2DF499C100A32622 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5802D7942DF499C100A32622;
+			remoteInfo = "se-fitness";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5802D7952DF499C100A32622 /* se-fitness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "se-fitness.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5802D7AB2DF499C200A32622 /* se-fitnessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "se-fitnessTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5802D7B52DF499C200A32622 /* se-fitnessUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "se-fitnessUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		5802D7BD2DF499C200A32622 /* Exceptions for "se-fitness" folder in "se-fitness" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 5802D7942DF499C100A32622 /* se-fitness */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		5802D7972DF499C100A32622 /* se-fitness */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				5802D7BD2DF499C200A32622 /* Exceptions for "se-fitness" folder in "se-fitness" target */,
+			);
+			path = "se-fitness";
+			sourceTree = "<group>";
+		};
+		5802D7AE2DF499C200A32622 /* se-fitnessTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "se-fitnessTests";
+			sourceTree = "<group>";
+		};
+		5802D7B82DF499C200A32622 /* se-fitnessUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "se-fitnessUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5802D7922DF499C100A32622 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5802D7A82DF499C200A32622 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5802D7B22DF499C200A32622 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5802D78C2DF499C100A32622 = {
+			isa = PBXGroup;
+			children = (
+				5802D7972DF499C100A32622 /* se-fitness */,
+				5802D7AE2DF499C200A32622 /* se-fitnessTests */,
+				5802D7B82DF499C200A32622 /* se-fitnessUITests */,
+				5802D7962DF499C100A32622 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5802D7962DF499C100A32622 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5802D7952DF499C100A32622 /* se-fitness.app */,
+				5802D7AB2DF499C200A32622 /* se-fitnessTests.xctest */,
+				5802D7B52DF499C200A32622 /* se-fitnessUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5802D7942DF499C100A32622 /* se-fitness */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5802D7BE2DF499C200A32622 /* Build configuration list for PBXNativeTarget "se-fitness" */;
+			buildPhases = (
+				5802D7912DF499C100A32622 /* Sources */,
+				5802D7922DF499C100A32622 /* Frameworks */,
+				5802D7932DF499C100A32622 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				5802D7972DF499C100A32622 /* se-fitness */,
+			);
+			name = "se-fitness";
+			packageProductDependencies = (
+			);
+			productName = "se-fitness";
+			productReference = 5802D7952DF499C100A32622 /* se-fitness.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5802D7AA2DF499C200A32622 /* se-fitnessTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5802D7C32DF499C200A32622 /* Build configuration list for PBXNativeTarget "se-fitnessTests" */;
+			buildPhases = (
+				5802D7A72DF499C200A32622 /* Sources */,
+				5802D7A82DF499C200A32622 /* Frameworks */,
+				5802D7A92DF499C200A32622 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5802D7AD2DF499C200A32622 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				5802D7AE2DF499C200A32622 /* se-fitnessTests */,
+			);
+			name = "se-fitnessTests";
+			packageProductDependencies = (
+			);
+			productName = "se-fitnessTests";
+			productReference = 5802D7AB2DF499C200A32622 /* se-fitnessTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5802D7B42DF499C200A32622 /* se-fitnessUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5802D7C62DF499C200A32622 /* Build configuration list for PBXNativeTarget "se-fitnessUITests" */;
+			buildPhases = (
+				5802D7B12DF499C200A32622 /* Sources */,
+				5802D7B22DF499C200A32622 /* Frameworks */,
+				5802D7B32DF499C200A32622 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5802D7B72DF499C200A32622 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				5802D7B82DF499C200A32622 /* se-fitnessUITests */,
+			);
+			name = "se-fitnessUITests";
+			packageProductDependencies = (
+			);
+			productName = "se-fitnessUITests";
+			productReference = 5802D7B52DF499C200A32622 /* se-fitnessUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5802D78D2DF499C100A32622 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					5802D7942DF499C100A32622 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					5802D7AA2DF499C200A32622 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 5802D7942DF499C100A32622;
+					};
+					5802D7B42DF499C200A32622 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 5802D7942DF499C100A32622;
+					};
+				};
+			};
+			buildConfigurationList = 5802D7902DF499C100A32622 /* Build configuration list for PBXProject "se-fitness" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5802D78C2DF499C100A32622;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 5802D7962DF499C100A32622 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5802D7942DF499C100A32622 /* se-fitness */,
+				5802D7AA2DF499C200A32622 /* se-fitnessTests */,
+				5802D7B42DF499C200A32622 /* se-fitnessUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5802D7932DF499C100A32622 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5802D7A92DF499C200A32622 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5802D7B32DF499C200A32622 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5802D7912DF499C100A32622 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5802D7A72DF499C200A32622 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5802D7B12DF499C200A32622 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5802D7AD2DF499C200A32622 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5802D7942DF499C100A32622 /* se-fitness */;
+			targetProxy = 5802D7AC2DF499C200A32622 /* PBXContainerItemProxy */;
+		};
+		5802D7B72DF499C200A32622 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5802D7942DF499C100A32622 /* se-fitness */;
+			targetProxy = 5802D7B62DF499C200A32622 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		5802D7BF2DF499C200A32622 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4CMVBFM2BQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "se-fitness/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chenolivia.se-fitness";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5802D7C02DF499C200A32622 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4CMVBFM2BQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "se-fitness/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chenolivia.se-fitness";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		5802D7C12DF499C200A32622 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 4CMVBFM2BQ;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		5802D7C22DF499C200A32622 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 4CMVBFM2BQ;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5802D7C42DF499C200A32622 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4CMVBFM2BQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chenolivia.se-fitnessTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/se-fitness.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/se-fitness";
+			};
+			name = Debug;
+		};
+		5802D7C52DF499C200A32622 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4CMVBFM2BQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chenolivia.se-fitnessTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/se-fitness.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/se-fitness";
+			};
+			name = Release;
+		};
+		5802D7C72DF499C200A32622 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4CMVBFM2BQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chenolivia.se-fitnessUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "se-fitness";
+			};
+			name = Debug;
+		};
+		5802D7C82DF499C200A32622 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4CMVBFM2BQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chenolivia.se-fitnessUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "se-fitness";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5802D7902DF499C100A32622 /* Build configuration list for PBXProject "se-fitness" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5802D7C12DF499C200A32622 /* Debug */,
+				5802D7C22DF499C200A32622 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5802D7BE2DF499C200A32622 /* Build configuration list for PBXNativeTarget "se-fitness" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5802D7BF2DF499C200A32622 /* Debug */,
+				5802D7C02DF499C200A32622 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5802D7C32DF499C200A32622 /* Build configuration list for PBXNativeTarget "se-fitnessTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5802D7C42DF499C200A32622 /* Debug */,
+				5802D7C52DF499C200A32622 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5802D7C62DF499C200A32622 /* Build configuration list for PBXNativeTarget "se-fitnessUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5802D7C72DF499C200A32622 /* Debug */,
+				5802D7C82DF499C200A32622 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5802D78D2DF499C100A32622 /* Project object */;
+}
