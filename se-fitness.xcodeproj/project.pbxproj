@@ -48,16 +48,6 @@
 			path = "se-fitness";
 			sourceTree = "<group>";
 		};
-		5802D7AE2DF499C200A32622 /* se-fitnessTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "se-fitnessTests";
-			sourceTree = "<group>";
-		};
-		5802D7B82DF499C200A32622 /* se-fitnessUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "se-fitnessUITests";
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,8 +79,6 @@
 			isa = PBXGroup;
 			children = (
 				5802D7972DF499C100A32622 /* se-fitness */,
-				5802D7AE2DF499C200A32622 /* se-fitnessTests */,
-				5802D7B82DF499C200A32622 /* se-fitnessUITests */,
 				5802D7962DF499C100A32622 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -143,9 +131,6 @@
 			dependencies = (
 				5802D7AD2DF499C200A32622 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				5802D7AE2DF499C200A32622 /* se-fitnessTests */,
-			);
 			name = "se-fitnessTests";
 			packageProductDependencies = (
 			);
@@ -165,9 +150,6 @@
 			);
 			dependencies = (
 				5802D7B72DF499C200A32622 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				5802D7B82DF499C200A32622 /* se-fitnessUITests */,
 			);
 			name = "se-fitnessUITests";
 			packageProductDependencies = (
