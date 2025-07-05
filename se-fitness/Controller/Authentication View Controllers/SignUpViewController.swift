@@ -9,41 +9,33 @@ import UIKit
 import Firebase
 import GoogleSignIn
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: BaseAuthenticationViewController {
     
-    
-    @IBOutlet weak var logoView: UIImageView!
     @IBOutlet weak var roleSelector: UISegmentedControl!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var googleSignUpButton: UIButton!
+    @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
-    @IBOutlet weak var logoWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var logoHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var logoTopConstraint: NSLayoutConstraint!
     
-    let height = UIScreen.main.bounds.height
     let alertManager = AlertManager()
+    let firebaseManager = FirebaseManager()
+    let db = Firestore.firestore()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let buttons = [signUpButton, googleSignUpButton]
-        let textFields = [emailTextField, passwordTextField, confirmPasswordTextField]
+        let textFields = [firstNameTextField, lastNameTextField, emailTextField, passwordTextField, confirmPasswordTextField]
         super.viewDidLoad()
         
-        // Adjust SE Fitness logo positioning based on screen size
-        logoHeightConstraint.constant = height * 0.15
-        logoWidthConstraint.constant = CGRectGetHeight(self.logoView.bounds) * 2
-        logoTopConstraint.constant = height * 0.10
-        view.layoutIfNeeded()
-        
         roleSelector.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "calibri", size: 12)!], for: .normal)
-
+        
         for button in buttons {
             if let safeButton = button {
-                safeButton.titleLabel?.font = UIFont(name: "calibri", size: 15)
+                safeButton.titleLabel?.font = UIFont(name: "calibri", size: 13)
                 safeButton.layer.cornerRadius = 12
             }
         }
@@ -52,21 +44,6 @@ class SignUpViewController: UIViewController {
             textField?.font = UIFont(name: "calibri", size: 15)
         }
         
-        // Keyboard goes down when screen is tapped outside and swipped
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tapGesture)
-        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        swipeGesture.direction = .down
-        view.addGestureRecognizer(swipeGesture)
-    }
-    
-    @objc func dismissKeyboard() {
-        /**
-         Dimisses the keyboard.
-         */
-        
-        emailTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
     }
     
     @IBAction func signUpPressed(_ sender: UIButton) {
@@ -82,6 +59,7 @@ class SignUpViewController: UIViewController {
         // If email and password are not nil
         if let email = emailTextField.text, let password = passwordTextField.text, let confirmedPassword = confirmPasswordTextField.text {
             if password == confirmedPassword {
+                
                 // Create new user using email and password. createUser has email and password validation
                 Auth.auth().createUser(withEmail: email, password: password) { authResult, err in
                     
@@ -95,7 +73,12 @@ class SignUpViewController: UIViewController {
                         
                         // Otherwise, perform segue to calculator
                     } else {
-                        self.performSegue(withIdentifier: K.signUpCalculatorSegue, sender: self)
+                        if let user = authResult?.user {
+                            let userRole = self.roleSelector.selectedSegmentIndex == 0 ? "coach" : "athlete"
+                            self.firebaseManager.createUserDocument(firstName: self.firstNameTextField.text ?? "", lastName: self.lastNameTextField.text ?? "", role: userRole, email: email, uid: user.uid)
+                        }
+                        
+                        self.performSegue(withIdentifier: K.signUpTabSegue, sender: self)
                     }
                 }
             } else {
@@ -144,25 +127,29 @@ class SignUpViewController: UIViewController {
                         // If there are errors in signing up, show error to user
                         if let err = err {
                             self.alertManager.showAlert(alertMessage: err.localizedDescription, viewController: self)
-                            
+                            return
                         }
                         
+                        guard let firebaseUser = result?.user else {
+                            self.alertManager.showAlert(alertMessage: "Unable to fetch Firebase user.", viewController: self)
+                            return
+                        }
+                        
+                        let splitFullName = firebaseUser.displayName?.components(separatedBy: " ")
+                        let firstName = splitFullName?.first ?? ""
+                        let lastName = splitFullName?.count ?? 0 > 1 ? splitFullName?[1] : ""
+                        
                         // Otherwise, check if user is new or not
-                        else {
-                            
-                            if let isNewUser: Bool = result?.additionalUserInfo?.isNewUser {
-                                
-                                // If user is new, go to calculator view controller
-                                if isNewUser {
-                                    self.performSegue(withIdentifier: K.signUpCalculatorSegue, sender: self)
-                                }
-                                
-                                // If user is not new, go to tab bar view controller
-                                else {
-                                    self.performSegue(withIdentifier: K.signUpTabSegue, sender: self)
-                                }
+                        
+                        if let isNewUser: Bool = result?.additionalUserInfo?.isNewUser {
+                            if isNewUser {
+                                let userRole = self.roleSelector.selectedSegmentIndex == 0 ? "coach" : "athlete"
+                                self.firebaseManager.createUserDocument(firstName: firstName, lastName: lastName!, role: userRole, email: firebaseUser.email ?? "", uid: firebaseUser.uid)
                             }
                         }
+                        // Go to tab bar controller
+                        self.performSegue(withIdentifier: K.signUpTabSegue, sender: self)
+                        
                     }
                 }
             }
