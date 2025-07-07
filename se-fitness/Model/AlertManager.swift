@@ -24,10 +24,10 @@ struct AlertManager {
          */
         
         // Create alert with message argument
-        let alert = UIAlertController(title: "alert", message: alertMessage, preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "Alert", message: alertMessage, preferredStyle: UIAlertController.Style.alert)
         
         // Add dismiss option that can call a chosen function
-        alert.addAction(UIAlertAction(title: "dismiss", style: UIAlertAction.Style.default, handler: { _ in onDismiss?()
+        alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: { _ in onDismiss?()
         }))
         
         // Present alert on chosen view controller

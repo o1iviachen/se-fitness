@@ -92,7 +92,17 @@ class WelcomeViewController: BaseAuthenticationViewController {
                     
                     // Otherwise, perform segue to tab bar view controller
                 } else {
-                    self.performSegue(withIdentifier: K.signInTabSegue, sender: self)
+                    if let user = authResult?.user {
+                        self.firebaseManager.getRole(uid: user.uid) { role in
+                            if role == "coach" {
+                                self.performSegue(withIdentifier: K.signInCoachTabSegue, sender: self)
+                            } else if role == "athlete" {
+                                self.performSegue(withIdentifier: K.signInAthleteTabSegue, sender: self)
+                            } else {
+                                self.alertManager.showAlert(alertMessage: role!, viewController: self)
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -130,7 +140,7 @@ class WelcomeViewController: BaseAuthenticationViewController {
                     let credential = GoogleAuthProvider.credential(withIDToken: idToken!, accessToken: user!.accessToken.tokenString)
                     
                     // Sign in user with Google
-                    Auth.auth().signIn(with: credential) { result, err in
+                    Auth.auth().signIn(with: credential) { authResult, err in
                         
                         // If there are errors in signing in, show error to user
                         if let err = err {
@@ -138,13 +148,13 @@ class WelcomeViewController: BaseAuthenticationViewController {
                             return
                         }
                         
-                        guard let firebaseUser = result?.user else {
+                        guard let firebaseUser = authResult?.user else {
                             self.alertManager.showAlert(alertMessage: "Unable to fetch Firebase user.", viewController: self)
                             return
                         }
                         // Otherwise, check if user is new or not
                         
-                        if let isNewUser: Bool = result?.additionalUserInfo?.isNewUser {
+                        if let isNewUser: Bool = authResult?.additionalUserInfo?.isNewUser {
                             
                             // If user is new, go to calculator view controller
                             if isNewUser {
@@ -166,12 +176,29 @@ class WelcomeViewController: BaseAuthenticationViewController {
                                 let splitFullName = firebaseUser.displayName?.components(separatedBy: " ")
                                 let firstName = splitFullName?.first ?? ""
                                 let lastName = (splitFullName?.count ?? 0) > 1 ? (splitFullName?[1] ?? "") : ""
-
-                                self.firebaseManager.createUserDocument(firstName: firstName, lastName: lastName, role: selectedRole!, email: firebaseUser.email ?? "", uid: firebaseUser.uid)
+                                
+                                self.firebaseManager.generateUniqueCoachId { coachId in
+                                    self.firebaseManager.createUserDocument(firstName: firstName, lastName: lastName, role: selectedRole!, coachId: coachId, email: firebaseUser.email ?? "", uid: firebaseUser.uid)
+                                }
+                                
+                                // clunky
+                                if selectedRole == "Coach" {
+                                    self.performSegue(withIdentifier: K.signInCoachTabSegue, sender: self)
+                                } else if selectedRole == "Athlete" {
+                                    self.performSegue(withIdentifier: K.signInAthleteTabSegue, sender: self)
+                                }
+                                
+                            } else {
+                                self.firebaseManager.getRole(uid: firebaseUser.uid) { role in
+                                    if role == "coach" {
+                                        self.performSegue(withIdentifier: K.signInCoachTabSegue, sender: self)
+                                    } else if role == "athlete" {
+                                        self.performSegue(withIdentifier: K.signInAthleteTabSegue, sender: self)
+                                    } else {
+                                        self.alertManager.showAlert(alertMessage: role!, viewController: self)
+                                    }
+                                }
                             }
-                            
-                            // Go to tab bar view controller
-                            self.performSegue(withIdentifier: K.signInTabSegue, sender: self)
                         }
                     }
                 }

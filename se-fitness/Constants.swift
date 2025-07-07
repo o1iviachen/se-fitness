@@ -13,8 +13,11 @@ struct K {
      A structure to store static Strings used throughout the app.
      */
     
-    static let signInTabSegue = "signInToTab"
-    static let signUpTabSegue = "signUpToTab"
+    static let signInAthleteTabSegue = "signInToAthleteTab"
+    static let signUpAthleteTabSegue = "signUpToAthleteTab"
+    static let signInCoachTabSegue = "signInToCoachTab"
+    static let signUpCoachTabSegue = "signUpToCoachTab"
+    
     static let profileCellIdentifier = "ProfileCell"
     static let foodCellIdentifier = "FoodCell"
     static let logOutCellIdentifier = "LogOutCell"
@@ -33,6 +36,8 @@ struct K {
     static let foodResultSegue = "foodToResult"
     static let foodSearchSegue = "foodToSearch"
     static let foodEditSegue = "foodToEdit"
-    static let tabBarIdentifier = "TabBarController"
     static let welcomeIdentifier = "NavigationController"
+    static let coachTabBarIdentifier = "CoachTabBarController"
+    static let athleteTabBarIdentifier = "AthleteTabBarController"
+
 }

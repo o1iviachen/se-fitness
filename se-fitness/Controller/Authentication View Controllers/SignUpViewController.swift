@@ -75,14 +75,20 @@ class SignUpViewController: BaseAuthenticationViewController {
                     } else {
                         if let user = authResult?.user {
                             let userRole = self.roleSelector.selectedSegmentIndex == 0 ? "coach" : "athlete"
-                            self.firebaseManager.createUserDocument(firstName: self.firstNameTextField.text ?? "", lastName: self.lastNameTextField.text ?? "", role: userRole, email: email, uid: user.uid)
+                            self.firebaseManager.generateUniqueCoachId { coachId in
+                                self.firebaseManager.createUserDocument(firstName: self.firstNameTextField.text ?? "", lastName: self.lastNameTextField.text ?? "", role: userRole, coachId: coachId, email: email, uid: user.uid)
+                                if userRole == "coach" {
+                                    print("sennnoooooora")
+                                    self.performSegue(withIdentifier: K.signUpCoachTabSegue, sender: self)
+                                } else if userRole == "athlete" {
+                                    self.performSegue(withIdentifier: K.signUpAthleteTabSegue, sender: self)
+                                }
+                            }
                         }
-                        
-                        self.performSegue(withIdentifier: K.signUpTabSegue, sender: self)
                     }
                 }
             } else {
-                self.alertManager.showAlert(alertMessage: "⚠️ Passwords do not match! ", viewController: self)
+                self.alertManager.showAlert(alertMessage: "⚠️ Passwords do not match!", viewController: self)
             }
         }
     }
@@ -144,12 +150,16 @@ class SignUpViewController: BaseAuthenticationViewController {
                         if let isNewUser: Bool = result?.additionalUserInfo?.isNewUser {
                             if isNewUser {
                                 let userRole = self.roleSelector.selectedSegmentIndex == 0 ? "coach" : "athlete"
-                                self.firebaseManager.createUserDocument(firstName: firstName, lastName: lastName!, role: userRole, email: firebaseUser.email ?? "", uid: firebaseUser.uid)
+                                self.firebaseManager.generateUniqueCoachId { coachId in
+                                    self.firebaseManager.createUserDocument(firstName: firstName, lastName: lastName!, role: userRole, coachId: coachId, email: firebaseUser.email ?? "", uid: firebaseUser.uid)
+                                }
+                                if userRole == "coach" {
+                                    self.performSegue(withIdentifier: K.signInCoachTabSegue, sender: self)
+                                } else if userRole == "athlete" {
+                                    self.performSegue(withIdentifier: K.signInAthleteTabSegue, sender: self)
+                                }
                             }
                         }
-                        // Go to tab bar controller
-                        self.performSegue(withIdentifier: K.signUpTabSegue, sender: self)
-                        
                     }
                 }
             }

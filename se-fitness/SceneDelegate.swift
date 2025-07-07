@@ -12,6 +12,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     var handle: AuthStateDidChangeListenerHandle?
+    let firebaseManager = FirebaseManager()
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         if let windowScene = scene as? UIWindowScene {
@@ -23,17 +24,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             // Determine if there if a user logged in; code from https://stackoverflow.com/questions/37873608/how-do-i-detect-if-a-user-is-already-logged-in-firebase
             handle = Auth.auth().addStateDidChangeListener { auth, user in
-                
+                print("helllllo?")
+                var initialViewController: UIViewController?
                 // If a user is logged in, go to tab bar view controller
-                if user != nil {
-                    let initialViewController = storyboard.instantiateViewController(withIdentifier: K.tabBarIdentifier)
-                    window.rootViewController = initialViewController
+                if let user = user {
+                    print("yip")
+                    self.firebaseManager.getRole(uid: user.uid) { role in
+                        if role == "coach" {
+                            initialViewController = storyboard.instantiateViewController(withIdentifier: K.coachTabBarIdentifier)
+                            window.rootViewController = initialViewController!
+                        } else if role == "athlete" {
+                            initialViewController = storyboard.instantiateViewController(withIdentifier: K.athleteTabBarIdentifier)
+                            window.rootViewController = initialViewController!
+                        } else {
+                            initialViewController = storyboard.instantiateViewController(withIdentifier: K.welcomeIdentifier)
+                            window.rootViewController = initialViewController!
+                        }
+                    }
                 }
                 
                 // If no user is logged in, go to welcome view controller
                 else {
-                    let initialViewController = storyboard.instantiateViewController(withIdentifier: K.welcomeIdentifier)
-                    window.rootViewController = initialViewController
+                    initialViewController = storyboard.instantiateViewController(withIdentifier: K.welcomeIdentifier)
+                    window.rootViewController = initialViewController!
                 }
             }
             
