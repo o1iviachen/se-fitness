@@ -78,10 +78,12 @@ class SignUpViewController: BaseAuthenticationViewController {
                             self.firebaseManager.generateUniqueCoachId { coachId in
                                 self.firebaseManager.createUserDocument(firstName: self.firstNameTextField.text ?? "", lastName: self.lastNameTextField.text ?? "", role: userRole, coachId: coachId, email: email, uid: user.uid)
                                 if userRole == "coach" {
-                                    print("sennnoooooora")
                                     self.performSegue(withIdentifier: K.signUpCoachTabSegue, sender: self)
                                 } else if userRole == "athlete" {
-                                    self.performSegue(withIdentifier: K.signUpAthleteTabSegue, sender: self)
+                                    print("isBeingPresented: \(self.isBeingPresented)")
+                                    print("isBeingDismissed: \(self.isBeingDismissed)")
+                                    print("window: \(self.view.window != nil)")
+                                    self.performSegue(withIdentifier: K.signUpCodeSegue, sender: self)
                                 }
                             }
                         }
@@ -136,12 +138,12 @@ class SignUpViewController: BaseAuthenticationViewController {
                             return
                         }
                         
-                        guard let firebaseUser = result?.user else {
+                        guard let user = result?.user else {
                             self.alertManager.showAlert(alertMessage: "Unable to fetch Firebase user.", viewController: self)
                             return
                         }
                         
-                        let splitFullName = firebaseUser.displayName?.components(separatedBy: " ")
+                        let splitFullName = user.displayName?.components(separatedBy: " ")
                         let firstName = splitFullName?.first ?? ""
                         let lastName = splitFullName?.count ?? 0 > 1 ? splitFullName?[1] : ""
                         
@@ -151,12 +153,12 @@ class SignUpViewController: BaseAuthenticationViewController {
                             if isNewUser {
                                 let userRole = self.roleSelector.selectedSegmentIndex == 0 ? "coach" : "athlete"
                                 self.firebaseManager.generateUniqueCoachId { coachId in
-                                    self.firebaseManager.createUserDocument(firstName: firstName, lastName: lastName!, role: userRole, coachId: coachId, email: firebaseUser.email ?? "", uid: firebaseUser.uid)
+                                    self.firebaseManager.createUserDocument(firstName: firstName, lastName: lastName!, role: userRole, coachId: coachId, email: user.email ?? "", uid: user.uid)
                                 }
                                 if userRole == "coach" {
-                                    self.performSegue(withIdentifier: K.signInCoachTabSegue, sender: self)
+                                    self.performSegue(withIdentifier: K.signUpCoachTabSegue, sender: self)
                                 } else if userRole == "athlete" {
-                                    self.performSegue(withIdentifier: K.signInAthleteTabSegue, sender: self)
+                                    self.performSegue(withIdentifier: K.signUpCodeSegue, sender: self)
                                 }
                             }
                         }

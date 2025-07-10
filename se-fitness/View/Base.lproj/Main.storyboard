@@ -146,6 +146,7 @@
                         <outlet property="signInButton" destination="GiF-hx-EWm" id="Y24-4Y-fs4"/>
                         <segue destination="rFZ-hN-2zf" kind="show" identifier="signInToAthleteTab" id="hAw-tG-F7r"/>
                         <segue destination="Q18-Ql-kIE" kind="show" identifier="signInToCoachTab" id="QVF-aW-vQR"/>
+                        <segue destination="E21-Hw-GK8" kind="show" identifier="signInToCode" id="bKu-tX-oa9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -218,6 +219,88 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nt0-QR-bD3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1381" y="-418"/>
+        </scene>
+        <!--Code View Controller-->
+        <scene sceneID="XvK-1v-qjk">
+            <objects>
+                <viewController id="E21-Hw-GK8" customClass="CodeViewController" customModule="se_fitness" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DUd-mE-vZa">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gym" translatesAutoresizingMaskIntoConstraints="NO" id="4i2-bo-bIy">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="black-gradient" translatesAutoresizingMaskIntoConstraints="NO" id="vA4-J2-X5G">
+                                <rect key="frame" x="0.0" y="-5" width="393" height="857"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="EC6-eS-R2f">
+                                <rect key="frame" x="0.0" y="349" width="393" height="154"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome! We see that you're a new athlete." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bdo-hA-6er">
+                                        <rect key="frame" x="30.333333333333343" y="0.0" width="332.33333333333326" height="20.333333333333332"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your coach's code below:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mpe-Pv-HbD">
+                                        <rect key="frame" x="50.333333333333343" y="35.333333333333314" width="292.66666666666663" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X0N-mH-HWh">
+                                        <rect key="frame" x="50" y="70.666666666666686" width="293" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pmu-EB-7NP">
+                                        <rect key="frame" x="164.33333333333334" y="119.66666666666667" width="64.333333333333343" height="34.333333333333329"/>
+                                        <color key="backgroundColor" name="se-yellow"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Enter">
+                                            <color key="baseForegroundColor" name="dark-grey"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="searchCode:" destination="E21-Hw-GK8" eventType="touchUpInside" id="Exs-Iv-4SK"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="X0N-mH-HWh" secondAttribute="trailing" constant="50" id="NDH-jj-gRP"/>
+                                    <constraint firstItem="X0N-mH-HWh" firstAttribute="leading" secondItem="EC6-eS-R2f" secondAttribute="leading" constant="50" id="XFi-93-0hw"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="djv-9u-aV3"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="4i2-bo-bIy" firstAttribute="leading" secondItem="djv-9u-aV3" secondAttribute="leading" id="4PC-uC-4Ns"/>
+                            <constraint firstItem="djv-9u-aV3" firstAttribute="trailing" secondItem="EC6-eS-R2f" secondAttribute="trailing" id="75r-17-LB8"/>
+                            <constraint firstItem="vA4-J2-X5G" firstAttribute="trailing" secondItem="djv-9u-aV3" secondAttribute="trailing" id="8ZT-Jf-jKa"/>
+                            <constraint firstItem="vA4-J2-X5G" firstAttribute="leading" secondItem="djv-9u-aV3" secondAttribute="leading" id="VpY-Qw-PF1"/>
+                            <constraint firstAttribute="bottom" secondItem="vA4-J2-X5G" secondAttribute="bottom" id="awC-hR-2Hf"/>
+                            <constraint firstItem="EC6-eS-R2f" firstAttribute="leading" secondItem="djv-9u-aV3" secondAttribute="leading" id="eTd-0g-AXg"/>
+                            <constraint firstItem="4i2-bo-bIy" firstAttribute="trailing" secondItem="djv-9u-aV3" secondAttribute="trailing" id="egf-59-R9x"/>
+                            <constraint firstItem="4i2-bo-bIy" firstAttribute="top" secondItem="DUd-mE-vZa" secondAttribute="top" id="emL-ZL-zPv"/>
+                            <constraint firstAttribute="bottom" secondItem="4i2-bo-bIy" secondAttribute="bottom" id="hVU-pu-URh"/>
+                            <constraint firstItem="vA4-J2-X5G" firstAttribute="top" secondItem="DUd-mE-vZa" secondAttribute="top" constant="-5" id="rK0-6S-kzh"/>
+                            <constraint firstItem="EC6-eS-R2f" firstAttribute="centerY" secondItem="DUd-mE-vZa" secondAttribute="centerY" id="s13-YR-kHo"/>
+                            <constraint firstItem="EC6-eS-R2f" firstAttribute="centerX" secondItem="DUd-mE-vZa" secondAttribute="centerX" id="xKe-Ji-nkw"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="2W5-35-iIZ"/>
+                    <connections>
+                        <outlet property="codeLabel" destination="Mpe-Pv-HbD" id="3E1-wM-BTS"/>
+                        <outlet property="codeTextField" destination="X0N-mH-HWh" id="oF7-Ec-G6Z"/>
+                        <outlet property="enterButton" destination="Pmu-EB-7NP" id="VPu-ic-839"/>
+                        <outlet property="welcomeLabel" destination="Bdo-hA-6er" id="hWB-fb-8eu"/>
+                        <segue destination="rFZ-hN-2zf" kind="show" identifier="codeToAthleteTab" id="HJB-g6-6HY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uuB-bR-c5k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2308" y="-1335"/>
         </scene>
         <!--Workouts-->
         <scene sceneID="Myg-qu-KsU">
@@ -519,6 +602,7 @@
                         <outlet property="signUpButton" destination="H0U-jP-4uA" id="UvW-Bd-lgr"/>
                         <segue destination="rFZ-hN-2zf" kind="show" identifier="signUpToAthleteTab" id="PMf-Bl-7W7"/>
                         <segue destination="Q18-Ql-kIE" kind="show" identifier="signUpToCoachTab" id="T6A-gc-WUc"/>
+                        <segue destination="E21-Hw-GK8" kind="show" identifier="signUpToCode" id="GiU-cp-HOY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JXw-YQ-XY8" sceneMemberID="firstResponder"/>
@@ -574,8 +658,20 @@
                     <view key="view" contentMode="scaleToFill" id="KKC-ls-qbo">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="az6-f7-qRa">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="170.33333333333334"/>
+                                <color key="backgroundColor" name="dark-grey"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="M1r-wS-ySL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="az6-f7-qRa" firstAttribute="top" secondItem="KKC-ls-qbo" secondAttribute="top" id="HZM-ub-JDL"/>
+                            <constraint firstItem="az6-f7-qRa" firstAttribute="height" secondItem="KKC-ls-qbo" secondAttribute="height" multiplier="0.2" id="a9V-kd-DYy"/>
+                            <constraint firstAttribute="trailing" secondItem="az6-f7-qRa" secondAttribute="trailing" id="nXV-cM-eMQ"/>
+                            <constraint firstItem="az6-f7-qRa" firstAttribute="leading" secondItem="KKC-ls-qbo" secondAttribute="leading" id="rtf-OE-2zn"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Messages" image="message.fill" catalog="system" id="XdW-Ao-oUS">
                         <color key="badgeColor" name="se-yellow"/>
@@ -583,12 +679,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5sE-sm-Ixy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3082" y="-185"/>
+            <point key="canvasLocation" x="3081.679389312977" y="-185.21126760563382"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="PMf-Bl-7W7"/>
         <segue reference="T6A-gc-WUc"/>
+        <segue reference="GiU-cp-HOY"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="black-gradient" width="718" height="717"/>

@@ -24,14 +24,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             // Determine if there if a user logged in; code from https://stackoverflow.com/questions/37873608/how-do-i-detect-if-a-user-is-already-logged-in-firebase
             handle = Auth.auth().addStateDidChangeListener { auth, user in
-                print("helllllo?")
                 var initialViewController: UIViewController?
                 // If a user is logged in, go to tab bar view controller
                 if let user = user {
-                    print("yip")
-                    self.firebaseManager.getRole(uid: user.uid) { role in
+                    self.firebaseManager.getUserData(uid: user.uid, value: "role") { role in
                         if role == "coach" {
-                            initialViewController = storyboard.instantiateViewController(withIdentifier: K.coachTabBarIdentifier)
+                            // initialViewController = storyboard.instantiateViewController(withIdentifier: K.coachTabBarIdentifier)
+                            initialViewController = storyboard.instantiateViewController(withIdentifier: K.athleteTabBarIdentifier)
                             window.rootViewController = initialViewController!
                         } else if role == "athlete" {
                             initialViewController = storyboard.instantiateViewController(withIdentifier: K.athleteTabBarIdentifier)

@@ -54,7 +54,7 @@ class WelcomeViewController: BaseAuthenticationViewController {
          */
         
         // If segue that will be performed goes to password view controller
-        if segue.identifier == K.logInPasswordSegue {
+        if segue.identifier == K.signInPasswordSegue {
             
             // Force downcast destinationVC as PasswordViewController
             let destinationVC = segue.destination as! PasswordViewController
@@ -90,10 +90,10 @@ class WelcomeViewController: BaseAuthenticationViewController {
                         self.alertManager.showAlert(alertMessage: err.localizedDescription, viewController: self)
                     }
                     
-                    // Otherwise, perform segue to tab bar view controller
+                // Otherwise, perform segue to tab bar view controller
                 } else {
                     if let user = authResult?.user {
-                        self.firebaseManager.getRole(uid: user.uid) { role in
+                        self.firebaseManager.getUserData(uid: user.uid, value: "role") { role in
                             if role == "coach" {
                                 self.performSegue(withIdentifier: K.signInCoachTabSegue, sender: self)
                             } else if role == "athlete" {
@@ -148,7 +148,7 @@ class WelcomeViewController: BaseAuthenticationViewController {
                             return
                         }
                         
-                        guard let firebaseUser = authResult?.user else {
+                        guard let user = authResult?.user else {
                             self.alertManager.showAlert(alertMessage: "Unable to fetch Firebase user.", viewController: self)
                             return
                         }
@@ -173,23 +173,23 @@ class WelcomeViewController: BaseAuthenticationViewController {
                                 // Present the alert
                                 self.present(alert, animated: true, completion: nil)
                                 
-                                let splitFullName = firebaseUser.displayName?.components(separatedBy: " ")
+                                let splitFullName = user.displayName?.components(separatedBy: " ")
                                 let firstName = splitFullName?.first ?? ""
                                 let lastName = (splitFullName?.count ?? 0) > 1 ? (splitFullName?[1] ?? "") : ""
                                 
                                 self.firebaseManager.generateUniqueCoachId { coachId in
-                                    self.firebaseManager.createUserDocument(firstName: firstName, lastName: lastName, role: selectedRole!, coachId: coachId, email: firebaseUser.email ?? "", uid: firebaseUser.uid)
+                                    self.firebaseManager.createUserDocument(firstName: firstName, lastName: lastName, role: selectedRole!, coachId: coachId, email: user.email ?? "", uid: user.uid)
                                 }
                                 
                                 // clunky
                                 if selectedRole == "Coach" {
                                     self.performSegue(withIdentifier: K.signInCoachTabSegue, sender: self)
                                 } else if selectedRole == "Athlete" {
-                                    self.performSegue(withIdentifier: K.signInAthleteTabSegue, sender: self)
+                                    self.performSegue(withIdentifier: K.signInCodeSegue, sender: self)
                                 }
                                 
                             } else {
-                                self.firebaseManager.getRole(uid: firebaseUser.uid) { role in
+                                self.firebaseManager.getUserData(uid: user.uid, value: "role") { role in
                                     if role == "coach" {
                                         self.performSegue(withIdentifier: K.signInCoachTabSegue, sender: self)
                                     } else if role == "athlete" {

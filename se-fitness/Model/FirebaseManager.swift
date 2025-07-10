@@ -31,13 +31,13 @@ struct FirebaseManager {
         }
     }
     
-    func getRole(uid: String, completion: @escaping (String?) -> Void) {
+    func getUserData(uid: String, value: String, completion: @escaping (String?) -> Void) {
         db.collection("users").document(uid).getDocument { document, error in
             if let error = error {
                 completion(error.localizedDescription)
             } else {
                 if let data = document?.data() {
-                    let role = data["role"] as? String
+                    let role = data[value] as? String
                     completion(role)
                 } else {
                     completion("Role does not exist")
@@ -61,4 +61,6 @@ struct FirebaseManager {
             }
         }
     }
+    
+    //func athleteSearchedCode
 }
