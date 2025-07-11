@@ -71,20 +71,20 @@ class SignUpViewController: BaseAuthenticationViewController {
                             self.alertManager.showAlert(alertMessage: err.localizedDescription, viewController: self)
                         }
                         
-                        // Otherwise, perform segue to calculator
                     } else {
                         if let user = authResult?.user {
                             let userRole = self.roleSelector.selectedSegmentIndex == 0 ? "coach" : "athlete"
-                            self.firebaseManager.generateUniqueCoachId { coachId in
-                                self.firebaseManager.createUserDocument(firstName: self.firstNameTextField.text ?? "", lastName: self.lastNameTextField.text ?? "", role: userRole, coachId: coachId, email: email, uid: user.uid)
-                                if userRole == "coach" {
-                                    self.performSegue(withIdentifier: K.signUpCoachTabSegue, sender: self)
-                                } else if userRole == "athlete" {
-                                    print("isBeingPresented: \(self.isBeingPresented)")
-                                    print("isBeingDismissed: \(self.isBeingDismissed)")
-                                    print("window: \(self.view.window != nil)")
+                            if userRole == "coach" {
+                                self.performSegue(withIdentifier: K.signUpCoachTabSegue, sender: self)
+                                self.firebaseManager.generateUniqueCoachId { coachId in
+                                    self.firebaseManager.createUserDocument(firstName: self.firstNameTextField.text ?? "", lastName: self.lastNameTextField.text ?? "", role: userRole, coachId: coachId, email: email, uid: user.uid)
+                                }
+                            } else if userRole == "athlete" {
+                                DispatchQueue.main.async {
+                                    print("hello.")
                                     self.performSegue(withIdentifier: K.signUpCodeSegue, sender: self)
                                 }
+                                self.firebaseManager.createUserDocument(firstName: self.firstNameTextField.text ?? "", lastName: self.lastNameTextField.text ?? "", role: userRole, coachId: "", email: email, uid: user.uid)
                             }
                         }
                     }
@@ -160,6 +160,8 @@ class SignUpViewController: BaseAuthenticationViewController {
                                 } else if userRole == "athlete" {
                                     self.performSegue(withIdentifier: K.signUpCodeSegue, sender: self)
                                 }
+                            } else {
+                                self.performSegue(withIdentifier: K.signUpAthleteTabSegue, sender: self)
                             }
                         }
                     }

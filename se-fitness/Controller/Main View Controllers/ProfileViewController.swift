@@ -144,9 +144,16 @@ extension ProfileViewController: UITableViewDelegate {
                     try Auth.auth().signOut()
                     
                     // Return to welcome view controller
-                    self.navigationController?.popToRootViewController(animated: true)
+                    if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                       let delegate = windowScene.delegate as? SceneDelegate,
+                       let window = delegate.window {
+                        
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let welcomeVC = storyboard.instantiateViewController(withIdentifier: K.welcomeIdentifier)
+                        window.rootViewController = welcomeVC
+                        window.makeKeyAndVisible()
+                    }
                 }
-                
                 // If there is a sign out error, communicate to user there is an error
                 catch let signOutError as NSError {
                     self.alertManager.showAlert(alertMessage: signOutError.localizedDescription, viewController: self)

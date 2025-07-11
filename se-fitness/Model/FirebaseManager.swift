@@ -25,9 +25,7 @@ struct FirebaseManager {
         db.collection("users").document(uid).setData(userData) { error in
             if let error = error {
                 print("Error writing user document: \(error)")
-            } else {
-                print("User document successfully created!")
-            }
+            } 
         }
     }
     

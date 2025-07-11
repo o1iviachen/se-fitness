@@ -15,44 +15,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     let firebaseManager = FirebaseManager()
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        if let windowScene = scene as? UIWindowScene {
-            let window = UIWindow(windowScene: windowScene)
-            self.window = window
-            
-            // Instantiate Storyboard
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            
-            // Determine if there if a user logged in; code from https://stackoverflow.com/questions/37873608/how-do-i-detect-if-a-user-is-already-logged-in-firebase
-            handle = Auth.auth().addStateDidChangeListener { auth, user in
-                var initialViewController: UIViewController?
-                // If a user is logged in, go to tab bar view controller
-                if let user = user {
-                    self.firebaseManager.getUserData(uid: user.uid, value: "role") { role in
-                        if role == "coach" {
-                            // initialViewController = storyboard.instantiateViewController(withIdentifier: K.coachTabBarIdentifier)
-                            initialViewController = storyboard.instantiateViewController(withIdentifier: K.athleteTabBarIdentifier)
-                            window.rootViewController = initialViewController!
-                        } else if role == "athlete" {
-                            initialViewController = storyboard.instantiateViewController(withIdentifier: K.athleteTabBarIdentifier)
-                            window.rootViewController = initialViewController!
-                        } else {
-                            initialViewController = storyboard.instantiateViewController(withIdentifier: K.welcomeIdentifier)
-                            window.rootViewController = initialViewController!
-                        }
-                    }
-                }
-                
-                // If no user is logged in, go to welcome view controller
-                else {
-                    initialViewController = storyboard.instantiateViewController(withIdentifier: K.welcomeIdentifier)
-                    window.rootViewController = initialViewController!
-                }
-            }
-            
-            
-            window.makeKeyAndVisible()
-            guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = scene as? UIWindowScene else { return }
+        
+        let window = UIWindow(windowScene: windowScene)
+        self.window = window
+        
+        // Instantiate Storyboard
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        // One-time check for current user
+        if let _ = Auth.auth().currentUser {
+            // User is already logged in must change
+            let initialViewController = storyboard.instantiateViewController(withIdentifier: K.athleteTabBarIdentifier)
+            window.rootViewController = initialViewController
+        } else {
+            // No user is logged in
+            let initialViewController = storyboard.instantiateViewController(withIdentifier: K.welcomeIdentifier)
+            window.rootViewController = initialViewController
         }
+        
+        window.makeKeyAndVisible()
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

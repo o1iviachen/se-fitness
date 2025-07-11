@@ -218,7 +218,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nt0-QR-bD3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1381" y="-418"/>
+            <point key="canvasLocation" x="616" y="-970"/>
         </scene>
         <!--Code View Controller-->
         <scene sceneID="XvK-1v-qjk">
@@ -393,6 +393,35 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="170.33333333333334"/>
                                 <color key="backgroundColor" name="dark-grey"/>
                             </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="GHl-33-9QF">
+                                <rect key="frame" x="30" y="86.666666666666671" width="333" height="63.666666666666671"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jhQ-o2-ao9">
+                                        <rect key="frame" x="0.0" y="2" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="5YS-Us-ZoN"/>
+                                            <constraint firstAttribute="width" constant="60" id="WUB-jm-72b"/>
+                                        </constraints>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="eri-11-1wo">
+                                        <rect key="frame" x="80" y="0.0" width="253" height="63.666666666666664"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rWE-hr-0qD">
+                                                <rect key="frame" x="0.0" y="0.0" width="253" height="31.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🏆 100 workouts completed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nc3-jL-msA">
+                                                <rect key="frame" x="0.0" y="43.333333333333329" width="253" height="20.333333333333329"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="t90-Ms-2fN">
                                 <rect key="frame" x="0.0" y="170.33333333333331" width="393" height="564.66666666666674"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -401,9 +430,12 @@
                         <viewLayoutGuide key="safeArea" id="V1r-gQ-E75"/>
                         <constraints>
                             <constraint firstItem="t90-Ms-2fN" firstAttribute="trailing" secondItem="V1r-gQ-E75" secondAttribute="trailing" id="6sD-3o-fr4"/>
+                            <constraint firstAttribute="trailing" secondItem="GHl-33-9QF" secondAttribute="trailing" constant="30" id="F4c-yq-9k0"/>
                             <constraint firstItem="t90-Ms-2fN" firstAttribute="top" secondItem="VFm-Co-QcT" secondAttribute="bottom" id="RUs-sc-vR6"/>
                             <constraint firstAttribute="trailing" secondItem="VFm-Co-QcT" secondAttribute="trailing" id="TwL-Qy-C6s"/>
                             <constraint firstItem="VFm-Co-QcT" firstAttribute="top" secondItem="c6T-HM-HF3" secondAttribute="top" id="Wbb-76-E0O"/>
+                            <constraint firstItem="t90-Ms-2fN" firstAttribute="top" secondItem="GHl-33-9QF" secondAttribute="bottom" constant="20" id="XZk-OD-C2N"/>
+                            <constraint firstItem="GHl-33-9QF" firstAttribute="leading" secondItem="c6T-HM-HF3" secondAttribute="leading" constant="30" id="gzG-vQ-ZFc"/>
                             <constraint firstItem="VFm-Co-QcT" firstAttribute="leading" secondItem="c6T-HM-HF3" secondAttribute="leading" id="hNG-nU-QYw"/>
                             <constraint firstItem="t90-Ms-2fN" firstAttribute="bottom" secondItem="V1r-gQ-E75" secondAttribute="bottom" id="pay-WJ-I1c"/>
                             <constraint firstItem="VFm-Co-QcT" firstAttribute="height" secondItem="c6T-HM-HF3" secondAttribute="height" multiplier="0.2" id="yy1-4e-Ogn"/>
@@ -470,7 +502,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BUJ-FN-Cfw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2308" y="1201"/>
+            <point key="canvasLocation" x="2308" y="1197"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="6hW-9L-FW9">
@@ -602,12 +634,12 @@
                         <outlet property="signUpButton" destination="H0U-jP-4uA" id="UvW-Bd-lgr"/>
                         <segue destination="rFZ-hN-2zf" kind="show" identifier="signUpToAthleteTab" id="PMf-Bl-7W7"/>
                         <segue destination="Q18-Ql-kIE" kind="show" identifier="signUpToCoachTab" id="T6A-gc-WUc"/>
-                        <segue destination="E21-Hw-GK8" kind="show" identifier="signUpToCode" id="GiU-cp-HOY"/>
+                        <segue destination="E21-Hw-GK8" kind="show" identifier="signUpToCode" id="i37-IU-CnJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JXw-YQ-XY8" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1381" y="428"/>
+            <point key="canvasLocation" x="1468" y="-13"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hLe-Ds-Qzo">
@@ -649,7 +681,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Ds-nm-Tf3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2308" y="-241"/>
+            <point key="canvasLocation" x="2308" y="-42"/>
         </scene>
         <!--Messages-->
         <scene sceneID="QhM-bb-aQD">
@@ -661,13 +693,83 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="az6-f7-qRa">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="170.33333333333334"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="cbo-H2-05Z">
+                                        <rect key="frame" x="30" y="86.666666666666671" width="333" height="63.666666666666671"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WK1-50-nRA">
+                                                <rect key="frame" x="0.0" y="2" width="60" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="LpV-8O-NT6"/>
+                                                    <constraint firstAttribute="width" constant="60" id="vyh-Iq-5Sc"/>
+                                                </constraints>
+                                            </imageView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="V7n-ht-iz7">
+                                                <rect key="frame" x="80" y="0.0" width="253" height="63.666666666666664"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message your coach" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VYI-8l-Icz">
+                                                        <rect key="frame" x="0.0" y="0.0" width="253" height="20.333333333333332"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coach Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IYu-B4-2ex">
+                                                        <rect key="frame" x="0.0" y="32.333333333333329" width="253" height="31.333333333333329"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
                                 <color key="backgroundColor" name="dark-grey"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="cbo-H2-05Z" secondAttribute="bottom" constant="20" id="PHE-cV-pa5"/>
+                                    <constraint firstAttribute="trailing" secondItem="cbo-H2-05Z" secondAttribute="trailing" constant="30" id="SA0-Lc-42N"/>
+                                    <constraint firstItem="cbo-H2-05Z" firstAttribute="leading" secondItem="az6-f7-qRa" secondAttribute="leading" constant="30" id="ujz-nj-FW1"/>
+                                </constraints>
                             </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="ctz-A8-BkN">
+                                <rect key="frame" x="20" y="685.66666666666663" width="353" height="34.333333333333371"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bZL-mH-srG">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="34.333333333333336"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="qdt-Uf-jJ6"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="camera.circle" catalog="system">
+                                            <color key="baseForegroundColor" name="dark-grey"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Mt-eP-X1L">
+                                        <rect key="frame" x="63" y="0.0" width="227" height="34.333333333333336"/>
+                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NmB-8F-rHH">
+                                        <rect key="frame" x="303" y="0.0" width="50" height="34.333333333333336"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="MSi-sS-IHB"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="paperplane" catalog="system">
+                                            <color key="baseForegroundColor" name="dark-grey"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="M1r-wS-ySL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="ctz-A8-BkN" firstAttribute="leading" secondItem="KKC-ls-qbo" secondAttribute="leading" constant="20" id="ESI-WE-PjF"/>
                             <constraint firstItem="az6-f7-qRa" firstAttribute="top" secondItem="KKC-ls-qbo" secondAttribute="top" id="HZM-ub-JDL"/>
+                            <constraint firstItem="M1r-wS-ySL" firstAttribute="bottom" secondItem="ctz-A8-BkN" secondAttribute="bottom" constant="15" id="NF6-Ut-aQK"/>
+                            <constraint firstItem="M1r-wS-ySL" firstAttribute="trailing" secondItem="ctz-A8-BkN" secondAttribute="trailing" constant="20" id="QPI-kB-mrN"/>
                             <constraint firstItem="az6-f7-qRa" firstAttribute="height" secondItem="KKC-ls-qbo" secondAttribute="height" multiplier="0.2" id="a9V-kd-DYy"/>
                             <constraint firstAttribute="trailing" secondItem="az6-f7-qRa" secondAttribute="trailing" id="nXV-cM-eMQ"/>
                             <constraint firstItem="az6-f7-qRa" firstAttribute="leading" secondItem="KKC-ls-qbo" secondAttribute="leading" id="rtf-OE-2zn"/>
@@ -683,18 +785,20 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="PMf-Bl-7W7"/>
+        <segue reference="hAw-tG-F7r"/>
         <segue reference="T6A-gc-WUc"/>
-        <segue reference="GiU-cp-HOY"/>
+        <segue reference="i37-IU-CnJ"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="black-gradient" width="718" height="717"/>
+        <image name="camera.circle" catalog="system" width="128" height="123"/>
         <image name="cropped-se-fitness-logo" width="1414" height="2000"/>
         <image name="figure.indoor.soccer" catalog="system" width="126" height="128"/>
         <image name="google" width="18" height="18"/>
         <image name="google.png" width="18" height="18"/>
         <image name="gym" width="1000" height="562"/>
         <image name="message.fill" catalog="system" width="128" height="114"/>
+        <image name="paperplane" catalog="system" width="128" height="119"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <namedColor name="dark-grey">
             <color red="0.15294117647058825" green="0.15294117647058825" blue="0.15294117647058825" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -707,6 +811,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

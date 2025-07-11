@@ -90,14 +90,18 @@ class WelcomeViewController: BaseAuthenticationViewController {
                         self.alertManager.showAlert(alertMessage: err.localizedDescription, viewController: self)
                     }
                     
-                // Otherwise, perform segue to tab bar view controller
+                    // Otherwise, perform segue to tab bar view controller
                 } else {
                     if let user = authResult?.user {
                         self.firebaseManager.getUserData(uid: user.uid, value: "role") { role in
                             if role == "coach" {
-                                self.performSegue(withIdentifier: K.signInCoachTabSegue, sender: self)
+                                DispatchQueue.main.async {
+                                    self.performSegue(withIdentifier: K.signInCoachTabSegue, sender: self)
+                                }
                             } else if role == "athlete" {
-                                self.performSegue(withIdentifier: K.signInAthleteTabSegue, sender: self)
+                                DispatchQueue.main.async {
+                                    self.performSegue(withIdentifier: K.signInAthleteTabSegue, sender: self)
+                                }
                             } else {
                                 self.alertManager.showAlert(alertMessage: role!, viewController: self)
                             }
@@ -184,16 +188,20 @@ class WelcomeViewController: BaseAuthenticationViewController {
                                 // clunky
                                 if selectedRole == "Coach" {
                                     self.performSegue(withIdentifier: K.signInCoachTabSegue, sender: self)
+                                    
                                 } else if selectedRole == "Athlete" {
                                     self.performSegue(withIdentifier: K.signInCodeSegue, sender: self)
+                                    
                                 }
                                 
                             } else {
                                 self.firebaseManager.getUserData(uid: user.uid, value: "role") { role in
                                     if role == "coach" {
                                         self.performSegue(withIdentifier: K.signInCoachTabSegue, sender: self)
+                                        
                                     } else if role == "athlete" {
                                         self.performSegue(withIdentifier: K.signInAthleteTabSegue, sender: self)
+                                        
                                     } else {
                                         self.alertManager.showAlert(alertMessage: role!, viewController: self)
                                     }
