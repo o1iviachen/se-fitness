@@ -23,11 +23,23 @@ class ProfileViewController: UIViewController {
     let alertManager = AlertManager()
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var workoutsLabel: UILabel!
     
     override func viewDidLoad() {
         /**
          Called after the View Controller is loaded to set up the Profile View Controller's Table View with custom cells.
          */
+        
+        firebaseManager.getUserData(uid: Auth.auth().currentUser!.uid, value: "firstName", completion: { firstName in
+            self.firebaseManager.getUserData(uid: Auth.auth().currentUser!.uid, value: "lastName", completion: { lastName in
+                self.userNameLabel.text = "\(firstName ?? "") \(lastName ?? "")"
+            })
+        })
+        
+        firebaseManager.getUserData(uid: Auth.auth().currentUser!.uid, value: "workoutsCompleted") { numberOfWorkouts in
+            self.workoutsLabel.text = "🏆 \(numberOfWorkouts ?? 0) workouts completed"
+        }
         
         super.viewDidLoad()
         

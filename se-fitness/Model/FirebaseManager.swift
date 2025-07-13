@@ -12,6 +12,32 @@ struct FirebaseManager {
     let db = Firestore.firestore()
     let alertManager = AlertManager()
     
+    func fetchUserDocument(completion: @escaping (DocumentSnapshot?) -> Void) {
+        /**
+         Fetches a Firebase Firestore document authorized through the user's email.
+         
+         - Parameters:
+            - completion (Optional DocumentSnapshot): Stores the Firebase Firestore information at the time of the call.
+         */
+        
+        db.collection("users").document((Auth.auth().currentUser?.email)!).getDocument { document, error in
+            
+            // If an error occurs in fetching document, call completion handler with no document snapshot (nil); code from https://cloud.google.com/firestore/docs/manage-data/add-data
+            guard let document = document else {
+                completion(document)
+                return
+            }
+            
+            // If the document is empty, call completion handler with no document snapshot (nil)
+            guard document.data() != nil else {
+                completion(document)
+                return
+            }
+            
+            completion(document)
+        }
+    }
+    
     func createUserDocument(firstName: String, lastName: String, role: String, coachId: String?, email: String, uid: String) {
         let userData: [String: Any] = [
             "firstName": firstName,
@@ -19,6 +45,7 @@ struct FirebaseManager {
             "email": email,
             "role": role,
             "coachId": coachId ?? "",
+            "workoutsCompleted": 0,
             "createdAt": Timestamp()
         ]
         
@@ -29,7 +56,9 @@ struct FirebaseManager {
         }
     }
     
-    func getUserData(uid: String, value: String, completion: @escaping (String?) -> Void) {
+    
+    
+    func getUserData(uid: String, value: String, completion: @escaping (Any?) -> Void) {
         db.collection("users").document(uid).getDocument { document, error in
             if let error = error {
                 completion(error.localizedDescription)
@@ -60,5 +89,17 @@ struct FirebaseManager {
         }
     }
     
-    //func athleteSearchedCode
+    func confirmCoach(code: String, completion: @escaping (String?) -> Void) {
+        db.collection("users").whereField("coachId", isEqualTo: code).whereField("role", isEqualTo: "coach").getDocuments { snapshot, error in
+            if let error = error {
+                completion(error.localizedDescription)
+            } else if let doc = snapshot?.documents.first {
+                let coachFirstName = doc.get("firstName") as? String ?? ""
+                let coachLastName = doc.get("lastName") as? String  ?? ""
+                completion("\(coachFirstName) \(coachLastName)")
+            } else {
+                completion(nil)
+            }
+        }
+    }
 }

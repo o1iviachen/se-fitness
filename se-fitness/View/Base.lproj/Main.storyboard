@@ -262,7 +262,7 @@
                                             <color key="baseForegroundColor" name="dark-grey"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="searchCode:" destination="E21-Hw-GK8" eventType="touchUpInside" id="Exs-Iv-4SK"/>
+                                            <action selector="enterPressed:" destination="E21-Hw-GK8" eventType="touchUpInside" id="PKW-s7-ERd"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -447,6 +447,8 @@
                     </tabBarItem>
                     <connections>
                         <outlet property="tableView" destination="t90-Ms-2fN" id="knZ-v5-u4V"/>
+                        <outlet property="userNameLabel" destination="rWE-hr-0qD" id="ZlV-qx-k8E"/>
+                        <outlet property="workoutsLabel" destination="nc3-jL-msA" id="hKO-5g-kSM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cik-Uz-gML" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -778,6 +780,9 @@
                     <tabBarItem key="tabBarItem" title="Messages" image="message.fill" catalog="system" id="XdW-Ao-oUS">
                         <color key="badgeColor" name="se-yellow"/>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="coachNameLabel" destination="IYu-B4-2ex" id="gZk-uj-zWH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5sE-sm-Ixy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -785,7 +790,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="hAw-tG-F7r"/>
+        <segue reference="HJB-g6-6HY"/>
         <segue reference="T6A-gc-WUc"/>
         <segue reference="i37-IU-CnJ"/>
     </inferredMetricsTieBreakers>

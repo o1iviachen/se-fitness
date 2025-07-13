@@ -81,7 +81,6 @@ class SignUpViewController: BaseAuthenticationViewController {
                                 }
                             } else if userRole == "athlete" {
                                 DispatchQueue.main.async {
-                                    print("hello.")
                                     self.performSegue(withIdentifier: K.signUpCodeSegue, sender: self)
                                 }
                                 self.firebaseManager.createUserDocument(firstName: self.firstNameTextField.text ?? "", lastName: self.lastNameTextField.text ?? "", role: userRole, coachId: "", email: email, uid: user.uid)

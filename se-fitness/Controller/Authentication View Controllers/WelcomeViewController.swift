@@ -94,16 +94,17 @@ class WelcomeViewController: BaseAuthenticationViewController {
                 } else {
                     if let user = authResult?.user {
                         self.firebaseManager.getUserData(uid: user.uid, value: "role") { role in
-                            if role == "coach" {
+                            let castedRole = role as? String ?? ""
+                            if castedRole == "coach" {
                                 DispatchQueue.main.async {
                                     self.performSegue(withIdentifier: K.signInCoachTabSegue, sender: self)
                                 }
-                            } else if role == "athlete" {
+                            } else if castedRole == "athlete" {
                                 DispatchQueue.main.async {
                                     self.performSegue(withIdentifier: K.signInAthleteTabSegue, sender: self)
                                 }
                             } else {
-                                self.alertManager.showAlert(alertMessage: role!, viewController: self)
+                                self.alertManager.showAlert(alertMessage: castedRole, viewController: self)
                             }
                         }
                     }
@@ -196,14 +197,15 @@ class WelcomeViewController: BaseAuthenticationViewController {
                                 
                             } else {
                                 self.firebaseManager.getUserData(uid: user.uid, value: "role") { role in
-                                    if role == "coach" {
+                                    let castedRole = role as? String ?? ""
+                                    if castedRole == "coach" {
                                         self.performSegue(withIdentifier: K.signInCoachTabSegue, sender: self)
                                         
-                                    } else if role == "athlete" {
+                                    } else if castedRole == "athlete" {
                                         self.performSegue(withIdentifier: K.signInAthleteTabSegue, sender: self)
                                         
                                     } else {
-                                        self.alertManager.showAlert(alertMessage: role!, viewController: self)
+                                        self.alertManager.showAlert(alertMessage: castedRole, viewController: self)
                                     }
                                 }
                             }

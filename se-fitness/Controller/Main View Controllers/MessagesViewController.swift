@@ -6,11 +6,18 @@
 //
 
 import UIKit
+import Firebase
 
 class MessagesViewController: UIViewController {
-    override func viewDidLoad() {
     
-        super.viewDidLoad()
+    let firebaseManager = FirebaseManager()
+    
+    @IBOutlet weak var coachNameLabel: UILabel!
+    override func viewDidLoad() {
         
+        super.viewDidLoad()
+        firebaseManager.getUserData(uid: Auth.auth().currentUser!.uid, value: "coachName", completion: { coachName in
+            self.coachNameLabel.text = coachName as? String ?? "Your coach"
+        })
     }
 }
