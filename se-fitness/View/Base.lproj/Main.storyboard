@@ -357,13 +357,21 @@
                                     <constraint firstItem="38t-hg-WiC" firstAttribute="leading" secondItem="zn0-7H-uPW" secondAttribute="leading" constant="50" id="rZQ-X0-269"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="QPk-zq-hrP">
+                                <rect key="frame" x="0.0" y="162" width="393" height="573"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YhM-Wc-MBR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="QPk-zq-hrP" firstAttribute="leading" secondItem="YhM-Wc-MBR" secondAttribute="leading" id="5w7-Gr-raJ"/>
                             <constraint firstItem="zn0-7H-uPW" firstAttribute="top" secondItem="62n-Vn-wzP" secondAttribute="top" id="Eb3-F0-WNd"/>
                             <constraint firstItem="zn0-7H-uPW" firstAttribute="height" secondItem="62n-Vn-wzP" secondAttribute="height" multiplier="0.2" id="Lzy-87-Bun"/>
+                            <constraint firstItem="QPk-zq-hrP" firstAttribute="trailing" secondItem="YhM-Wc-MBR" secondAttribute="trailing" id="Wz7-Mf-tdA"/>
+                            <constraint firstItem="QPk-zq-hrP" firstAttribute="top" secondItem="YhM-Wc-MBR" secondAttribute="top" id="YVn-jn-am8"/>
                             <constraint firstItem="zn0-7H-uPW" firstAttribute="leading" secondItem="YhM-Wc-MBR" secondAttribute="leading" id="a09-13-TZj"/>
+                            <constraint firstItem="QPk-zq-hrP" firstAttribute="bottom" secondItem="YhM-Wc-MBR" secondAttribute="bottom" id="ccd-cO-eMk"/>
                             <constraint firstItem="zn0-7H-uPW" firstAttribute="trailing" secondItem="YhM-Wc-MBR" secondAttribute="trailing" id="sdB-Me-kUg"/>
                         </constraints>
                     </view>
@@ -373,6 +381,7 @@
                     <navigationItem key="navigationItem" id="P6t-Tg-VGI"/>
                     <connections>
                         <outlet property="headerBlock" destination="zn0-7H-uPW" id="Zhu-CN-6ta"/>
+                        <outlet property="tableView" destination="QPk-zq-hrP" id="Evk-uB-tNC"/>
                         <outlet property="welcomeLabel" destination="gE5-k0-N9b" id="rrA-Vr-VR4"/>
                         <outlet property="workoutSelector" destination="2xX-NS-aNL" id="IBz-ur-OO9"/>
                     </connections>
@@ -818,7 +827,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

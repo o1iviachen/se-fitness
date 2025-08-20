@@ -51,7 +51,7 @@ class ProfileViewController: UIViewController {
         
         // Register employed cells
         tableView.register(UINib(nibName: K.profileCellIdentifier, bundle: nil), forCellReuseIdentifier: K.profileCellIdentifier)
-        tableView.register(UINib(nibName: K.logOutCellNib, bundle: nil), forCellReuseIdentifier: K.logOutCellIdentifier)
+        tableView.register(UINib(nibName: K.logOutCellIdentifier, bundle: nil), forCellReuseIdentifier: K.logOutCellIdentifier)
         
         tableView.backgroundColor = .systemGray6
 

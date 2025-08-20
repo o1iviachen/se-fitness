@@ -23,8 +23,9 @@ struct K {
 
     
     static let profileCellIdentifier = "ProfileCell"
+    static let workoutCellIdentifier = "WorkoutCell"
+    static let exerciseCellIdentifier = "ExerciseCell"
     static let logOutCellIdentifier = "LogOutCell"
-    static let logOutCellNib = "LogOutCell"
     static let searchSegue = "searchSegue"
     static let proMainSegue = "proToMain"
  
