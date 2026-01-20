@@ -14,9 +14,9 @@ struct DateManager {
         let startOfDay = calendar.startOfDay(for: today)
         return startOfDay
     }
-    func convertToString(date: Date) -> String {
+    func convertToString(date: Date, stringFormat: String) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM d, yyyy"
+        dateFormatter.dateFormat = stringFormat
         return dateFormatter.string(from: date)
     }
 }

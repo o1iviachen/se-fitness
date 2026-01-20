@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: BaseProfileViewController {
     /**
      A class that allows the Profile View Controller to display the user's profile information and settings. The information that it displays includes the user's email, fibre goal, and a list of available edits for the user's profile.
      
@@ -18,27 +18,19 @@ class ProfileViewController: UIViewController {
         - fibreLabel (Unwrapped UILabel): Displays the user's fibre goal.
      */
     
-    let data = [[Setting(image: UIImage(systemName: "plusminus")!, setting: "Button 1"), Setting(image: UIImage(systemName: "square.and.pencil")!, setting: "Button 2")], [Setting(image: UIImage(systemName: "wrench.adjustable")!, setting: "Button 3")], ["Log out"]]
-    let firebaseManager = FirebaseManager()
+    let data = [[Setting(image: UIImage(systemName: "figure.indoor.soccer")!, setting: "Goals"), Setting(image: UIImage(systemName: "list.clipboard")!, setting: "Documents")], [Setting(image: UIImage(systemName: "questionmark.message")!, setting: "Contact")], ["Log out"]]
     let alertManager = AlertManager()
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var workoutsLabel: UILabel!
+    
     
     override func viewDidLoad() {
         /**
          Called after the View Controller is loaded to set up the Profile View Controller's Table View with custom cells.
          */
         
-        firebaseManager.getUserData(uid: Auth.auth().currentUser!.uid, value: "firstName", completion: { firstName in
-            self.firebaseManager.getUserData(uid: Auth.auth().currentUser!.uid, value: "lastName", completion: { lastName in
-                self.userNameLabel.text = "\(firstName ?? "") \(lastName ?? "")"
-            })
-        })
-        
         firebaseManager.getUserData(uid: Auth.auth().currentUser!.uid, value: "workoutsCompleted") { numberOfWorkouts in
-            self.workoutsLabel.text = "🏆 \(numberOfWorkouts ?? 0) workouts completed"
+            self.viewControllerLabel.text = "🏆 \(numberOfWorkouts ?? 0) workouts completed"
         }
         
         super.viewDidLoad()
@@ -54,7 +46,14 @@ class ProfileViewController: UIViewController {
         tableView.register(UINib(nibName: K.logOutCellIdentifier, bundle: nil), forCellReuseIdentifier: K.logOutCellIdentifier)
         
         tableView.backgroundColor = .systemGray6
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
 
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: blockView.bottomAnchor)
+        ])
     }
 }
 
@@ -78,7 +77,6 @@ extension ProfileViewController: UITableViewDataSource {
         // Required to populate the correct number of sections
         return data.count
     }
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         /**
@@ -142,6 +140,7 @@ extension ProfileViewController: UITableViewDelegate {
             - indexPath (IndexPath): Specifies the row the user selected.
          */
         
+        print(indexPath)
         // If log out button is pressed
         if indexPath == [2,0] {
             let alert = UIAlertController(title: "Are you sure?", message: "Do you want to log out?", preferredStyle: .alert)
@@ -181,6 +180,10 @@ extension ProfileViewController: UITableViewDelegate {
         }
         
         // Segue to corresponding view controller based on selected cell
+        else if indexPath == [0, 0] {
+            performSegue(withIdentifier: K.profileGoalSegue, sender: self)
+            print("hello")
+        }
 //        else if indexPath == [0, 1] {
 //            performSegue(withIdentifier: K.profileSelectorSegue, sender: self)
 //        } else if indexPath == [0, 0] {
@@ -204,7 +207,7 @@ extension ProfileViewController: UITableViewDelegate {
          - Returns: A CGFloat indicating the height of the header.
          */
         
-        return 10.0
+        return 20.0
     }
     
     

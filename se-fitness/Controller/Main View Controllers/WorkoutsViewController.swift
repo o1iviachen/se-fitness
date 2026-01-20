@@ -15,10 +15,18 @@ class WorkoutsViewController: UIViewController {
     @IBOutlet weak var headerBlock: UIView!
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var workoutSelector: UISegmentedControl!
+    @IBOutlet weak var monthSelector: UIView!
+    @IBOutlet weak var targetViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var monthLabel: UILabel!
+    @IBOutlet weak var rightButton: UIButton!
+    @IBOutlet weak var leftButton: NSLayoutConstraint!
     
-    
+    let data = [Workout(completionImage: UIImage(systemName: "checkmark.circle")!, date: Date(), workoutText:  "Thursday", exercises: [Exercise(orderText: "A", exerciseName: "Squats", descriptionText: "3x8")])]
+    var filteredData: [Workout] = []
+
+    let dateManager = DateManager()
     let firebaseManager = FirebaseManager()
-    let data = [Workout(completionImage: UIImage(systemName: "checkmark.circle")!, dateText: "August 7, 2025", workoutText:  "Thursday", exercises: [Exercise(orderText: "A", exerciseName: "Squats", descriptionText: "3x8")])]
+    var currentDate = Date()
     
     override func viewDidLoad() {
     
@@ -31,11 +39,60 @@ class WorkoutsViewController: UIViewController {
                 self.welcomeLabel.text = "Hey! 👋"
             }
         })
+        
+        monthLabel.font = UIFont(name: "calibri", size: 17)!
+        monthLabel.text = dateManager.convertToString(date: currentDate, stringFormat: "MMMM yyyy")
         welcomeLabel.font = UIFont(name: "calibri-bold", size: 20)
         welcomeLabel.sizeToFit()
+        targetViewHeightConstraint.constant = 0
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UINib(nibName: K.workoutCellIdentifier, bundle: nil), forCellReuseIdentifier: K.workoutCellIdentifier)
+        tableView.backgroundColor = .systemGray6
+        updateFilteredData()
+        tableView.reloadData()
     }
     
+    @IBAction func timeSegmentChanged(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            monthSelector.isHidden = true
+            targetViewHeightConstraint.constant = 0
+
+        } else {
+            monthSelector.isHidden = false
+            targetViewHeightConstraint.constant = 60
+        }
+        updateFilteredData()
+        tableView.reloadData()
+    }
     
+    @IBAction func nextMonth(_ sender: UIButton) {
+        if !Calendar.current.isDate(currentDate, equalTo: Date(), toGranularity: .month) {
+            currentDate = Calendar.current.date(byAdding: .month, value: 1, to: currentDate)!
+            monthLabel.text = dateManager.convertToString(date: currentDate, stringFormat: "MMMM yyyy")
+            updateFilteredData()
+            tableView.reloadData()
+        }
+    }
+        
+    @IBAction func pastMonth(_ sender: UIButton) {
+        currentDate = Calendar.current.date(byAdding: .month, value: -1, to: currentDate)!
+        monthLabel.text = dateManager.convertToString(date: currentDate, stringFormat: "MMMM yyyy")
+        updateFilteredData()
+        tableView.reloadData()
+    }
+    
+    func updateFilteredData() {
+        if workoutSelector.selectedSegmentIndex == 0 {
+            filteredData = data.filter { $0.date >= dateManager.todayAtMidnight() }
+        } else {
+            // workouts in the selected month
+            filteredData = data.filter {
+                Calendar.current.isDate($0.date, equalTo: currentDate, toGranularity: .month) &&
+                Calendar.current.isDate($0.date, equalTo: currentDate, toGranularity: .year)
+            }
+        }
+    }
 }
 
 //MARK: - UITableViewDataSource
@@ -56,7 +113,7 @@ extension WorkoutsViewController: UITableViewDataSource {
          */
         
         // Required to populate the correct number of sections
-        return 1
+        return filteredData.count
     }
     
     
@@ -72,7 +129,7 @@ extension WorkoutsViewController: UITableViewDataSource {
          */
         
         // Required to populate the correct number of cells per section
-        return data.count
+        return 1
     }
     
     
@@ -87,32 +144,38 @@ extension WorkoutsViewController: UITableViewDataSource {
          - Returns: A UITableViewCell with the correct formal and information.
          */
         
-        // If the element is a Setting, create a Profile cell
-       
-        let cellData = data[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: K.workoutCellIdentifier, for: indexPath) as! WorkoutCell
-        
-        // Set cell attributes as Setting attributes
+        let cellData = filteredData[indexPath.section]
+
         cell.workoutLabel.text = cellData.workoutText
-        cell.completionImage = cellData.compleetionImage
-        cell.dateLabel.text = cellData.dateText
-        for exercise in cellData.exercises {
-            exercise.descriptionText
-        }
+        cell.completionImage.image = cellData.completionImage
+        cell.dateLabel.text = dateManager.convertToString(date: cellData.date, stringFormat: "MMMM dd, yyyy")
+        cell.data = cellData.exercises
+        
         return cell
     
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     }
 }
 
 //MARK: - UITableViewDelegate
 extension WorkoutsViewController: UITableViewDelegate {
     /**
-     An extention that allows the user to edit their profile.
+     An extension that allows the user to edit their profile.
      */
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        /**
+         Sets the height for the header in each section in the Table View.
+         
+         - Parameters:
+            - tableView (UITableView): Requests this information.
+            - section (Int): Specifies the section the header is for.
+         
+         - Returns: A CGFloat indicating the height of the header.
+         */
+        
+        return 20.0
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         /**
@@ -122,53 +185,6 @@ extension WorkoutsViewController: UITableViewDelegate {
             - tableView (UITableView): Informs the delegate of the row selection.
             - indexPath (IndexPath): Specifies the row the user selected.
          */
-        
-        // If log out button is pressed
-        if indexPath == [2,0] {
-            let alert = UIAlertController(title: "Are you sure?", message: "Do you want to log out?", preferredStyle: .alert)
-            
-            let cancelAction = UIAlertAction(title: "Cancel", style: .default)
-            
-            // Add a log out UIAlertAction with a handler to perform the segue
-            let logOutAction = UIAlertAction(title: "Log out", style: .default) { (action) in
-                do {
-                    
-                    // Sign user out
-                    try Auth.auth().signOut()
-                    
-                    // Return to welcome view controller
-                    if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                       let delegate = windowScene.delegate as? SceneDelegate,
-                       let window = delegate.window {
-                        
-                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let welcomeVC = storyboard.instantiateViewController(withIdentifier: K.welcomeIdentifier)
-                        window.rootViewController = welcomeVC
-                        window.makeKeyAndVisible()
-                    }
-                }
-                // If there is a sign out error, communicate to user there is an error
-                catch let signOutError as NSError {
-                    self.alertManager.showAlert(alertMessage: signOutError.localizedDescription, viewController: self)
-                }
-            }
-            
-            logOutAction.setValue(UIColor.red, forKey: "titleTextColor")
-            alert.addAction(cancelAction)
-            alert.addAction(logOutAction)
-            
-            // Present the alert
-            self.present(alert, animated: true, completion: nil)
-        }
-        
-        // Segue to corresponding view controller based on selected cell
-//        else if indexPath == [0, 1] {
-//            performSegue(withIdentifier: K.profileSelectorSegue, sender: self)
-//        } else if indexPath == [0, 0] {
-//            performSegue(withIdentifier: K.profileCalculatorSegue, sender: self)
-//        } else if indexPath == [1, 0] {
-//            self.performSegue(withIdentifier: K.profileSupportSegue, sender: self)
-//        }
         
         tableView.deselectRow(at: indexPath, animated: true)
     }

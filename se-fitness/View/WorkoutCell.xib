@@ -10,11 +10,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WorkoutCell" rowHeight="278" id="KGk-i7-Jjw" customClass="WorkoutCell" customModule="se_fitness" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="329" height="278"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WorkoutCell" rowHeight="267" id="KGk-i7-Jjw" customClass="WorkoutCell" customModule="se_fitness" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="329" height="267"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="329" height="278"/>
+                <rect key="frame" x="0.0" y="0.0" width="329" height="267"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rp2-uy-UeD">
@@ -27,10 +27,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="ozt-CA-YFk">
-                                <rect key="frame" x="284" y="10" width="30" height="30"/>
+                                <rect key="frame" x="289" y="12.666666666666664" width="25" height="25"/>
+                                <color key="tintColor" systemColor="systemGrayColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="7e9-ZH-wjN"/>
-                                    <constraint firstAttribute="height" constant="30" id="iI1-aw-R7r"/>
+                                    <constraint firstAttribute="width" constant="25" id="6Oh-K9-MyK"/>
+                                    <constraint firstAttribute="height" constant="25" id="8mK-6Y-fzl"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -44,19 +45,23 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Workout Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EcT-N5-R7m">
-                        <rect key="frame" x="15" y="65" width="110" height="21"/>
+                        <rect key="frame" x="15" y="65" width="299" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="QyT-5I-bnB">
+                    <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="QyT-5I-bnB">
                         <rect key="frame" x="0.0" y="101" width="329" height="177"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="177" id="1uo-zK-bBO"/>
+                        </constraints>
                     </tableView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="QyT-5I-bnB" secondAttribute="bottom" id="2rD-rz-Dfs"/>
-                    <constraint firstItem="QyT-5I-bnB" firstAttribute="top" secondItem="EcT-N5-R7m" secondAttribute="bottom" constant="15" id="Ow9-2t-skq"/>
+                    <constraint firstItem="QyT-5I-bnB" firstAttribute="top" secondItem="EcT-N5-R7m" secondAttribute="bottom" constant="15" id="8uk-83-HMu"/>
+                    <constraint firstAttribute="trailing" secondItem="EcT-N5-R7m" secondAttribute="trailing" constant="15" id="Pq6-ty-p8k"/>
                     <constraint firstAttribute="trailing" secondItem="rp2-uy-UeD" secondAttribute="trailing" id="co8-BR-Rjb"/>
                     <constraint firstItem="EcT-N5-R7m" firstAttribute="top" secondItem="rp2-uy-UeD" secondAttribute="bottom" constant="15" id="csS-rn-L11"/>
                     <constraint firstItem="rp2-uy-UeD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="dM8-ku-8nR"/>
@@ -71,9 +76,10 @@
                 <outlet property="completionImage" destination="ozt-CA-YFk" id="hUp-pS-i2A"/>
                 <outlet property="dateLabel" destination="Dxe-jD-K8b" id="ixq-KV-fJH"/>
                 <outlet property="exerciseTable" destination="QyT-5I-bnB" id="c1P-dn-5cz"/>
+                <outlet property="exerciseTableHeightConstraint" destination="1uo-zK-bBO" id="Fsl-sI-gg5"/>
                 <outlet property="workoutLabel" destination="EcT-N5-R7m" id="Stx-Sk-mhf"/>
             </connections>
-            <point key="canvasLocation" x="132.06106870229007" y="109.1549295774648"/>
+            <point key="canvasLocation" x="132.06106870229007" y="105.28169014084507"/>
         </tableViewCell>
     </objects>
     <resources>
@@ -82,7 +88,10 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

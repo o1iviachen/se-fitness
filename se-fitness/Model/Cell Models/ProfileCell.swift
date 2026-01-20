@@ -24,5 +24,4 @@ class ProfileCell: UITableViewCell {
         super.awakeFromNib()
         label.font = UIFont(name: "calibri", size: 17)
     }
-
 }

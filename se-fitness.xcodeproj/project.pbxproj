@@ -344,6 +344,7 @@
 				DEVELOPMENT_TEAM = 4CMVBFM2BQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "se-fitness/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "SE Fitness";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -373,6 +374,7 @@
 				DEVELOPMENT_TEAM = 4CMVBFM2BQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "se-fitness/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "SE Fitness";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

@@ -17,7 +17,7 @@ struct Workout {
      */
     
     let completionImage: UIImage
-    let dateText: String
+    let date: Date
     let workoutText: String
     let exercises: [Exercise]
 

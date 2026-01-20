@@ -23,11 +23,13 @@ struct K {
 
     
     static let profileCellIdentifier = "ProfileCell"
+    static let goalCellIdentifier = "GoalCell"
     static let workoutCellIdentifier = "WorkoutCell"
     static let exerciseCellIdentifier = "ExerciseCell"
     static let logOutCellIdentifier = "LogOutCell"
     static let searchSegue = "searchSegue"
     static let proMainSegue = "proToMain"
+    static let profileGoalSegue = "proToGoal"
  
     static let signInPasswordSegue = "signInToPassword"
 

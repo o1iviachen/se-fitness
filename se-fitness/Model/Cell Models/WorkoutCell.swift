@@ -9,16 +9,24 @@ import UIKit
 
 class WorkoutCell: UITableViewCell {
 
+    @IBOutlet weak var exerciseTableHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var completionImage: UIImageView!
     @IBOutlet weak var workoutLabel: UILabel!
     @IBOutlet weak var exerciseTable: UITableView!
-    let data: [Exercise] = []
+    var data: [Exercise] = [] {
+        didSet {
+            exerciseTable.reloadData()
+            let rowHeight = 45
+            exerciseTableHeightConstraint.constant = CGFloat(data.count * rowHeight)
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         let labels: [UILabel] = [dateLabel, workoutLabel]
         for label in labels {
-            label.font = UIFont(name: "calibri", size: 15)
+            label.font = UIFont(name: "calibri", size: 17)
         }
         
         exerciseTable.register(UINib(nibName: K.exerciseCellIdentifier, bundle: nil), forCellReuseIdentifier: K.exerciseCellIdentifier)
@@ -82,8 +90,9 @@ extension WorkoutCell: UITableViewDataSource {
          */
         
         // If the element is a Setting, create a Profile cell
+        
         let cellData = data[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: K.profileCellIdentifier, for: indexPath) as! ExerciseCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.exerciseCellIdentifier, for: indexPath) as! ExerciseCell
             
             // Set cell attributes as Setting attributes
         cell.orderLabel.text = cellData.orderText

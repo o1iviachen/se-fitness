@@ -14,13 +14,8 @@ class ExerciseCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        orderLabel.font = UIFont(name: "calibri-bold", size: 15)
+        exerciseName.font = UIFont(name: "calibri", size: 15)
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
 }
