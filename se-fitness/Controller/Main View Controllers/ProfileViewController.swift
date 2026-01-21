@@ -140,7 +140,6 @@ extension ProfileViewController: UITableViewDelegate {
             - indexPath (IndexPath): Specifies the row the user selected.
          */
         
-        print(indexPath)
         // If log out button is pressed
         if indexPath == [2,0] {
             let alert = UIAlertController(title: "Are you sure?", message: "Do you want to log out?", preferredStyle: .alert)
@@ -182,12 +181,11 @@ extension ProfileViewController: UITableViewDelegate {
         // Segue to corresponding view controller based on selected cell
         else if indexPath == [0, 0] {
             performSegue(withIdentifier: K.profileGoalSegue, sender: self)
-            print("hello")
+        } else if indexPath == [0, 1] {
+            performSegue(withIdentifier: K.profileDocumentSegue, sender: self)
+        } else if indexPath == [1, 0] {
+            performSegue(withIdentifier: K.profileContactSegue, sender: self)
         }
-//        else if indexPath == [0, 1] {
-//            performSegue(withIdentifier: K.profileSelectorSegue, sender: self)
-//        } else if indexPath == [0, 0] {
-//            performSegue(withIdentifier: K.profileCalculatorSegue, sender: self)
 //        } else if indexPath == [1, 0] {
 //            self.performSegue(withIdentifier: K.profileSupportSegue, sender: self)
 //        }

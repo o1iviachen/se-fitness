@@ -1,5 +1,5 @@
 //
-//  GoalsViewController.swift
+//  DocumentsViewController.swift
 //  se-fitness
 //
 //  Created by olivia chen on 2026-01-19.
@@ -8,9 +8,9 @@
 import UIKit
 import Firebase
 
-class GoalsViewController: BaseProfileViewController {
+class DocumentsViewController: BaseProfileViewController {
     
-    let data: [Goal] = [Goal(title: "Squat 1RM", description: "225 pounds")]
+    let data: [Document] = [Document(title: "Mobility routine", comment: "Once a day!", pdfTitle: "mobility.pdf")]
     
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
@@ -18,7 +18,7 @@ class GoalsViewController: BaseProfileViewController {
          Called after the View Controller is loaded to set up the Profile View Controller's Table View with custom cells.
          */
         
-        self.viewControllerLabel.text = "🚀 Goals"
+        self.viewControllerLabel.text = "📄 Documents"
         
         super.viewDidLoad()
         
@@ -29,7 +29,7 @@ class GoalsViewController: BaseProfileViewController {
         tableView.delegate = self
         
         // Register employed cells
-        tableView.register(UINib(nibName: K.goalCellIdentifier, bundle: nil), forCellReuseIdentifier: K.goalCellIdentifier)
+        tableView.register(UINib(nibName: K.documentCellIdentifier, bundle: nil), forCellReuseIdentifier: K.documentCellIdentifier)
         
         tableView.backgroundColor = .systemGray6
         
@@ -51,7 +51,7 @@ class GoalsViewController: BaseProfileViewController {
 }
 
 //MARK: - UITableViewDataSource
-extension GoalsViewController: UITableViewDataSource {
+extension DocumentsViewController: UITableViewDataSource {
     /**
      An extension that specifies the sections, rows, and cells for the Table View.
      */
@@ -100,17 +100,18 @@ extension GoalsViewController: UITableViewDataSource {
         
         // If the element is a Setting, create a Profile cell
         let cellData = data[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: K.goalCellIdentifier, for: indexPath) as! GoalCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.documentCellIdentifier, for: indexPath) as! DocumentCell
         
         // Set cell attributes as Setting attributes
         cell.titleLabel.text = cellData.title
-        cell.descriptionLabel.text = cellData.description
+        cell.commentLabel.text = cellData.comment
+        cell.pdfTitleLabel.text = cellData.pdfTitle
         return cell
     }
 }
 
 //MARK: - UITableViewDelegate
-extension GoalsViewController: UITableViewDelegate {
+extension DocumentsViewController: UITableViewDelegate {
     /**
      An extention that allows the user to edit their profile.
      */

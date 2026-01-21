@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DocumentCell" rowHeight="140" id="KGk-i7-Jjw" customClass="DocumentCell" customModule="se_fitness" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="FvI-Aq-fNM">
+                        <rect key="frame" x="20" y="20" width="280" height="100"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ext-7Z-Fl1">
+                                <rect key="frame" x="0.0" y="0.0" width="280" height="55.333333333333336"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="YzG-uZ-od9">
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="25"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="folder.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="hp9-rv-J0A">
+                                                <rect key="frame" x="0.0" y="1.6666666666666643" width="25" height="22.000000000000004"/>
+                                                <color key="tintColor" name="dark-grey"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="25" id="2pa-XY-34X"/>
+                                                    <constraint firstAttribute="width" constant="25" id="GnF-e3-Rha"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwH-Ui-jtk">
+                                                <rect key="frame" x="40" y="0.0" width="240" height="25"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="hp9-rv-J0A" secondAttribute="bottom" id="04G-hY-BSz"/>
+                                            <constraint firstItem="hp9-rv-J0A" firstAttribute="top" secondItem="YzG-uZ-od9" secondAttribute="top" id="bB4-zC-P8N"/>
+                                            <constraint firstItem="rwH-Ui-jtk" firstAttribute="leading" secondItem="hp9-rv-J0A" secondAttribute="trailing" constant="15" id="nad-pd-SOd"/>
+                                            <constraint firstItem="rwH-Ui-jtk" firstAttribute="leading" secondItem="hp9-rv-J0A" secondAttribute="trailing" constant="15" id="wuo-gm-mWv"/>
+                                        </constraints>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iye-Wa-dCj">
+                                        <rect key="frame" x="0.0" y="35" width="280" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" name="dark-grey"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bAu-SE-LCi">
+                                <rect key="frame" x="0.0" y="79.666666666666671" width="280" height="20.333333333333329"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="FvI-Aq-fNM" secondAttribute="trailing" constant="20" id="1te-fN-TvJ"/>
+                    <constraint firstItem="FvI-Aq-fNM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Enm-qD-IJ9"/>
+                    <constraint firstItem="FvI-Aq-fNM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="FnT-Gy-SM6"/>
+                    <constraint firstAttribute="bottom" secondItem="FvI-Aq-fNM" secondAttribute="bottom" constant="20" id="rXF-cv-eRi"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="commentLabel" destination="iye-Wa-dCj" id="GQ7-k8-Dlc"/>
+                <outlet property="pdfTitleLabel" destination="bAu-SE-LCi" id="6nG-3U-R84"/>
+                <outlet property="titleLabel" destination="rwH-Ui-jtk" id="rao-p8-ulS"/>
+            </connections>
+            <point key="canvasLocation" x="100.76335877862596" y="30.281690140845072"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="folder.fill" catalog="system" width="128" height="96"/>
+        <namedColor name="dark-grey">
+            <color red="0.15294117647058825" green="0.15294117647058825" blue="0.15294117647058825" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
+</document>

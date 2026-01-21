@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,14 +20,33 @@
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="J9j-l9-EUu">
                         <rect key="frame" x="20" y="20" width="280" height="60"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQj-pj-Ryd">
-                                <rect key="frame" x="0.0" y="0.0" width="280" height="20.333333333333332"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Tao-qs-OoB">
+                                <rect key="frame" x="0.0" y="0.0" width="280" height="25"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scalemass.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="77I-JO-fE4">
+                                        <rect key="frame" x="0.0" y="0.33333333333333215" width="25" height="24.333333333333336"/>
+                                        <color key="tintColor" name="dark-grey"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="P5P-Vc-Fpv"/>
+                                            <constraint firstAttribute="width" constant="25" id="hlm-G4-WEo"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQj-pj-Ryd">
+                                        <rect key="frame" x="40" y="0.0" width="240" height="25"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="77I-JO-fE4" firstAttribute="top" secondItem="Tao-qs-OoB" secondAttribute="top" id="9tY-jW-9MB"/>
+                                    <constraint firstItem="NQj-pj-Ryd" firstAttribute="leading" secondItem="77I-JO-fE4" secondAttribute="trailing" constant="15" id="EjG-GO-7bx"/>
+                                    <constraint firstItem="NQj-pj-Ryd" firstAttribute="leading" secondItem="77I-JO-fE4" secondAttribute="trailing" constant="15" id="a9k-zp-1KQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="77I-JO-fE4" secondAttribute="bottom" id="nz4-jw-s3D"/>
+                                </constraints>
+                            </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TGy-2K-X2L">
-                                <rect key="frame" x="0.0" y="39.666666666666664" width="280" height="20.333333333333336"/>
+                                <rect key="frame" x="0.0" y="41" width="280" height="19"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -34,8 +54,6 @@
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="TGy-2K-X2L" secondAttribute="trailing" id="Efl-Db-knl"/>
-                            <constraint firstItem="NQj-pj-Ryd" firstAttribute="leading" secondItem="J9j-l9-EUu" secondAttribute="leading" id="OjR-B3-a1L"/>
-                            <constraint firstAttribute="trailing" secondItem="NQj-pj-Ryd" secondAttribute="trailing" id="bpK-eT-hhs"/>
                             <constraint firstItem="TGy-2K-X2L" firstAttribute="leading" secondItem="J9j-l9-EUu" secondAttribute="leading" id="ejq-fy-GmL"/>
                         </constraints>
                     </stackView>
@@ -55,4 +73,10 @@
             <point key="canvasLocation" x="27.480916030534349" y="39.436619718309863"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="scalemass.fill" catalog="system" width="128" height="121"/>
+        <namedColor name="dark-grey">
+            <color red="0.15294117647058825" green="0.15294117647058825" blue="0.15294117647058825" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
 </document>

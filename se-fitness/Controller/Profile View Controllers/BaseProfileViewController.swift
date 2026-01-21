@@ -102,7 +102,7 @@ class BaseProfileViewController: UIViewController {
             blockView.leftAnchor.constraint(equalTo: view.leftAnchor),
             blockView.rightAnchor.constraint(equalTo: view.rightAnchor),
             profileStackView.centerXAnchor.constraint(equalTo: blockView.centerXAnchor),
-            profileStackView.bottomAnchor.constraint(equalTo: blockView.bottomAnchor, constant: -20),
+            profileStackView.bottomAnchor.constraint(equalTo: blockView.bottomAnchor, constant: -15),
             profileStackView.leftAnchor.constraint(equalTo: blockView.leftAnchor, constant: 40),
         ])
     }

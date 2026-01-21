@@ -20,9 +20,12 @@ struct K {
     static let codeTabSegue = "codeToAthleteTab"
     static let signInCodeSegue = "signInToCode"
     static let signUpCodeSegue = "signUpToCode"
+    static let profileContactSegue = "proToContact"
+    static let profileDocumentSegue = "proToDocuments"
 
     
     static let profileCellIdentifier = "ProfileCell"
+    static let documentCellIdentifier = "DocumentCell"
     static let goalCellIdentifier = "GoalCell"
     static let workoutCellIdentifier = "WorkoutCell"
     static let exerciseCellIdentifier = "ExerciseCell"
