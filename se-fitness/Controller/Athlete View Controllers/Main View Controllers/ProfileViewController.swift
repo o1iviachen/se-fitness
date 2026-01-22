@@ -18,7 +18,7 @@ class ProfileViewController: BaseProfileViewController {
         - fibreLabel (Unwrapped UILabel): Displays the user's fibre goal.
      */
     
-    let data = [[Setting(image: UIImage(systemName: "figure.indoor.soccer")!, setting: "Goals"), Setting(image: UIImage(systemName: "list.clipboard")!, setting: "Documents")], [Setting(image: UIImage(systemName: "questionmark.message")!, setting: "Contact")], ["Log out"]]
+    let data = [[Setting(image: UIImage(systemName: "figure.indoor.soccer")!, setting: "Goals"), Setting(image: UIImage(systemName: "list.clipboard")!, setting: "Documents")], [Setting(image: UIImage(systemName: "person.fill")!, setting: "Personal information"), Setting(image: UIImage(systemName: "questionmark.message")!, setting: "Contact")], ["Log out"]]
     let alertManager = AlertManager()
     
     @IBOutlet weak var tableView: UITableView!
@@ -50,9 +50,14 @@ class ProfileViewController: BaseProfileViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: blockView.bottomAnchor)
+            tableView.topAnchor.constraint(equalTo: blockView.bottomAnchor),
+            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 }
@@ -183,7 +188,7 @@ extension ProfileViewController: UITableViewDelegate {
             performSegue(withIdentifier: K.profileGoalSegue, sender: self)
         } else if indexPath == [0, 1] {
             performSegue(withIdentifier: K.profileDocumentSegue, sender: self)
-        } else if indexPath == [1, 0] {
+        } else if indexPath == [1, 1] {
             performSegue(withIdentifier: K.profileContactSegue, sender: self)
         }
 //        } else if indexPath == [1, 0] {

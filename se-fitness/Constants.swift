@@ -33,6 +33,7 @@ struct K {
     static let searchSegue = "searchSegue"
     static let proMainSegue = "proToMain"
     static let profileGoalSegue = "proToGoal"
+    static let textCellIdentifier = "TextCell"
  
     static let signInPasswordSegue = "signInToPassword"
 

@@ -24,10 +24,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         // One-time check for current user
-        if let _ = Auth.auth().currentUser {
+        if let user = Auth.auth().currentUser {
             // User is already logged in must change
-            let initialViewController = storyboard.instantiateViewController(withIdentifier: K.athleteTabBarIdentifier)
-            window.rootViewController = initialViewController
+            firebaseManager.getUserData(uid: user.uid, value: "role") { role in
+                if role as! String == "coach" {
+                    let initialViewController = storyboard.instantiateViewController(withIdentifier: K.coachTabBarIdentifier)
+                    window.rootViewController = initialViewController
+                } else {
+                    let initialViewController = storyboard.instantiateViewController(withIdentifier: K.athleteTabBarIdentifier)
+                    window.rootViewController = initialViewController
+                }
+            }
         } else {
             // No user is logged in
             let initialViewController = storyboard.instantiateViewController(withIdentifier: K.welcomeIdentifier)
