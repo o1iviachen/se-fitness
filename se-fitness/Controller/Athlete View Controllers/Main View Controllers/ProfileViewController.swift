@@ -29,8 +29,16 @@ class ProfileViewController: BaseProfileViewController {
          Called after the View Controller is loaded to set up the Profile View Controller's Table View with custom cells.
          */
         
-        firebaseManager.getUserData(uid: Auth.auth().currentUser!.uid, value: "workoutsCompleted") { numberOfWorkouts in
-            self.viewControllerLabel.text = "🏆 \(numberOfWorkouts ?? 0) workouts completed"
+        firebaseManager.getUserData(uid: Auth.auth().currentUser!.uid, value: "role") { role in
+            if role as! String == "coach" {
+                self.firebaseManager.getUserData(uid: Auth.auth().currentUser!.uid, value: "coachId") { coachCode in
+                    self.viewControllerLabel.text = "🏆 Your code: \(coachCode ?? "error")"
+                }
+            } else {
+                self.firebaseManager.getUserData(uid: Auth.auth().currentUser!.uid, value: "workoutsCompleted") { numberOfWorkouts in
+                    self.viewControllerLabel.text = "🏆 \(numberOfWorkouts ?? 0) workouts completed"
+                }
+            }
         }
         
         super.viewDidLoad()

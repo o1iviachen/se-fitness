@@ -964,17 +964,17 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="170.33333333333334"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="cbo-H2-05Z">
-                                        <rect key="frame" x="30" y="86.666666666666671" width="333" height="63.666666666666671"/>
+                                        <rect key="frame" x="30" y="68" width="333" height="82.333333333333314"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WK1-50-nRA">
-                                                <rect key="frame" x="0.0" y="2" width="60" height="60"/>
+                                                <rect key="frame" x="0.0" y="11.333333333333329" width="60" height="60"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="LpV-8O-NT6"/>
                                                     <constraint firstAttribute="width" constant="60" id="vyh-Iq-5Sc"/>
                                                 </constraints>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="V7n-ht-iz7">
-                                                <rect key="frame" x="80" y="0.0" width="253" height="63.666666666666664"/>
+                                                <rect key="frame" x="80" y="0.0" width="253" height="82.333333333333329"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message your coach" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VYI-8l-Icz">
                                                         <rect key="frame" x="0.0" y="0.0" width="253" height="20.333333333333332"/>
@@ -982,8 +982,8 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coach Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IYu-B4-2ex">
-                                                        <rect key="frame" x="0.0" y="32.333333333333329" width="253" height="31.333333333333329"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IYu-B4-2ex">
+                                                        <rect key="frame" x="0.0" y="32.333333333333329" width="253" height="50"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>

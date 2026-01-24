@@ -36,7 +36,11 @@ class CodeViewController: BaseAuthenticationViewController {
         if let code = codeTextField.text {
             firebaseManager.confirmCoach(code: code) { result in
                 if let result = result {
-                    self.db.document(Auth.auth().currentUser!.uid).setData(["coachId": code, "coachName": result], merge: true)
+                    let athleteUid = Auth.auth().currentUser!.uid
+                    self.db.document(athleteUid).setData(["coachId": code, "coachName": result], merge: true)
+                    self.firebaseManager.addAthlete(athleteUid: athleteUid, code: code) { result in
+                        self.alertManager.showAlert(alertMessage: result!, viewController: self)
+                    }
                     self.performSegue(withIdentifier: K.codeTabSegue, sender: self)
                 } else {
                     self.alertManager.showAlert(alertMessage: "We could not find a coach with this code. Please try again.", viewController: self)
