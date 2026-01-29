@@ -2,6 +2,28 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Project Context
+
+SE Fitness is a TrueCoach alternative built for Stephane Emard, an athletic trainer. The app connects coaches with athletes for online training services.
+
+**Client**: Stephane Emard (athletic trainer)
+**Team**: Olivia Chen and Tony Chen
+
+## Planned Features
+
+**Athlete features** (some implemented):
+- Workouts organized by month with past/future filtering
+- Workout detail view with timer and comments on exercises
+- Messaging with coach
+- Profile with goals, documents, personal info, developer contact, logout
+- Completed workouts counter
+
+**Coach features** (some implemented):
+- Clients list with active/archived organization
+- Exercise library (Stretch Affect, Central Athlete exercises)
+- Messages to athletes
+- Profile page
+
 ## Build Commands
 
 This is an iOS app using CocoaPods. Open with Xcode:
