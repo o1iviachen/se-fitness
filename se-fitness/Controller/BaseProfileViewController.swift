@@ -8,10 +8,24 @@
 import Firebase
 import UIKit
 
+// MARK: - BaseProfileViewController
+
 class BaseProfileViewController: UIViewController {
 
-    let firebaseManager = FirebaseManager()
+    // MARK: - Properties
+
     let blockView = UIView()
+    let viewControllerLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "calibri", size: 15) ?? .systemFont(ofSize: 15)
+        label.textColor = .white
+        label.numberOfLines = 1
+        return label
+    }()
+
+    private let firebaseManager = FirebaseManager.shared
+    private let height = UIScreen.main.bounds.height
+
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "test-monkey")
@@ -27,21 +41,11 @@ class BaseProfileViewController: UIViewController {
 
     private let userNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "calibri-bold", size: 22)!
+        label.font = UIFont(name: "calibri-bold", size: 22) ?? .boldSystemFont(ofSize: 22)
         label.textColor = .white
         label.numberOfLines = 1
         return label
     }()
-
-    let viewControllerLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont(name: "calibri", size: 15)!
-        label.textColor = .white
-        label.numberOfLines = 1
-        return label
-    }()
-
-    let height = UIScreen.main.bounds.height
 
     private lazy var textStackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [
@@ -66,32 +70,37 @@ class BaseProfileViewController: UIViewController {
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
-    
+
+    // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBlock()
     }
 
+    // MARK: - Private Methods
+
     private func setupBlock() {
-        blockView.backgroundColor = UIColor(named: "dark-grey")!
+        blockView.backgroundColor = UIColor(named: "dark-grey") ?? .darkGray
         blockView.contentMode = .scaleAspectFit
         blockView.translatesAutoresizingMaskIntoConstraints = false
 
+        guard let currentUser = Auth.auth().currentUser else { return }
+
         firebaseManager.getUserData(
-            uid: Auth.auth().currentUser!.uid,
-            value: "firstName",
-            completion: { firstName in
-                self.firebaseManager.getUserData(
-                    uid: Auth.auth().currentUser!.uid,
-                    value: "lastName",
-                    completion: { lastName in
-                        self.userNameLabel.text =
-                            "\(firstName ?? "") \(lastName ?? "")"
-                    }
-                )
+            uid: currentUser.uid,
+            value: "firstName"
+        ) { [weak self] firstName in
+            guard let self = self else { return }
+            self.firebaseManager.getUserData(
+                uid: currentUser.uid,
+                value: "lastName"
+            ) { [weak self] lastName in
+                guard let self = self else { return }
+                self.userNameLabel.text = "\(firstName ?? "") \(lastName ?? "")"
             }
-        )
-        
+        }
+
         blockView.addSubview(profileStackView)
         view.addSubview(blockView)
 

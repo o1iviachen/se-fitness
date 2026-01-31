@@ -7,12 +7,18 @@
 
 import UIKit
 
-class DocumentCell: UITableViewCell {
+// MARK: - DocumentCell
 
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var pdfTitleLabel: UILabel!
-    @IBOutlet weak var commentLabel: UILabel!
-    
+final class DocumentCell: UITableViewCell {
+
+    // MARK: - IBOutlets
+
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var pdfTitleLabel: UILabel!
+    @IBOutlet private weak var commentLabel: UILabel!
+
+    // MARK: - Lifecycle
+
     override func awakeFromNib() {
         super.awakeFromNib()
         titleLabel.font = UIFont(name: "calibri-bold", size: 17)
@@ -22,8 +28,13 @@ class DocumentCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-    
+
+    // MARK: - Public Methods
+
+    func configure(title: String, comment: String, pdfTitle: String) {
+        titleLabel.text = title
+        commentLabel.text = comment
+        pdfTitleLabel.text = pdfTitle
+    }
 }

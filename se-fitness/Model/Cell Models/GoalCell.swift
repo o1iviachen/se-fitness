@@ -1,5 +1,5 @@
 //
-//  GoalViewCell.swift
+//  GoalCell.swift
 //  se-fitness
 //
 //  Created by olivia chen on 2026-01-19.
@@ -7,12 +7,17 @@
 
 import UIKit
 
-class GoalCell: UITableViewCell {
+// MARK: - GoalCell
 
-    
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    
+final class GoalCell: UITableViewCell {
+
+    // MARK: - IBOutlets
+
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var descriptionLabel: UILabel!
+
+    // MARK: - Lifecycle
+
     override func awakeFromNib() {
         super.awakeFromNib()
         titleLabel.font = UIFont(name: "calibri-bold", size: 17)
@@ -21,8 +26,12 @@ class GoalCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-    
+
+    // MARK: - Public Methods
+
+    func configure(title: String, description: String) {
+        titleLabel.text = title
+        descriptionLabel.text = description
+    }
 }

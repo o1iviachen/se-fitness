@@ -7,21 +7,26 @@
 
 import UIKit
 
-class ProfileCell: UITableViewCell {
+// MARK: - ProfileCell
 
-    /**
-         A custom UITableViewCell subclass that displays the user's profile information.
-         
-         - Properties:
-            - label (Unwrapped UILabel): Displays text.
-            - iconImage (Unwrapped UIImageView): Displays an icon image.
-         */
+final class ProfileCell: UITableViewCell {
 
-        @IBOutlet weak var label: UILabel!
-        @IBOutlet weak var iconImage: UIImageView!
-    
+    // MARK: - IBOutlets
+
+    @IBOutlet private weak var label: UILabel!
+    @IBOutlet private weak var iconImage: UIImageView!
+
+    // MARK: - Lifecycle
+
     override func awakeFromNib() {
         super.awakeFromNib()
         label.font = UIFont(name: "calibri", size: 17)
+    }
+
+    // MARK: - Public Methods
+
+    func configure(setting: String, image: UIImage) {
+        label.text = setting
+        iconImage.image = image
     }
 }

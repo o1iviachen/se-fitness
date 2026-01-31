@@ -8,32 +8,33 @@
 import UIKit
 import Firebase
 
-class DocumentsViewController: BaseProfileViewController {
-    
-    let data: [Document] = [Document(title: "Mobility routine", comment: "Once a day!", pdfTitle: "mobility.pdf")]
-    
-    @IBOutlet weak var tableView: UITableView!
-    override func viewDidLoad() {
-        /**
-         Called after the View Controller is loaded to set up the Profile View Controller's Table View with custom cells.
-         */
-        
-        self.viewControllerLabel.text = "📄 Documents"
-        
-        super.viewDidLoad()
-        
-        // Set self as the table view's data source to provide the data
-        tableView.dataSource = self
-        
-        // Set self as the table view's delegate to handle user interaction
-        tableView.delegate = self
-        
-        // Register employed cells
-        tableView.register(UINib(nibName: K.documentCellIdentifier, bundle: nil), forCellReuseIdentifier: K.documentCellIdentifier)
-        
-        tableView.backgroundColor = .systemGray6
-        
+// MARK: - DocumentsViewController
 
+final class DocumentsViewController: BaseProfileViewController {
+
+    // MARK: - IBOutlets
+
+    @IBOutlet private weak var tableView: UITableView!
+
+    // MARK: - Properties
+
+    private let data: [Document] = [Document(title: "Mobility routine", comment: "Once a day!", pdfTitle: "mobility.pdf")]
+
+    // MARK: - Lifecycle
+
+    override func viewDidLoad() {
+        viewControllerLabel.text = "📄 Documents"
+        super.viewDidLoad()
+        setupTableView()
+    }
+
+    // MARK: - Private Methods
+
+    private func setupTableView() {
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(UINib(nibName: AppConstants.documentCellIdentifier, bundle: nil), forCellReuseIdentifier: AppConstants.documentCellIdentifier)
+        tableView.backgroundColor = .systemGray6
     }
     
     override func viewDidLayoutSubviews() {
@@ -50,114 +51,41 @@ class DocumentsViewController: BaseProfileViewController {
     }
 }
 
-//MARK: - UITableViewDataSource
+// MARK: - UITableViewDataSource
+
 extension DocumentsViewController: UITableViewDataSource {
-    /**
-     An extension that specifies the sections, rows, and cells for the Table View.
-     */
-    
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
-        /**
-         Returns the number of sections needed.
-         
-         - Parameters:
-            - tableView (UITableView): Requests this information.
-         
-         - Returns: An Int indicating the number of sections.
-         */
-        
-        // Required to populate the correct number of sections
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        /**
-         Returns the number of rows for a given section.
-         
-         - Parameters:
-            - tableView (UITableView): Requests this information.
-            - section (Int): Indicates the section.
-         
-         - Returns: An Int indicating the number of rows.
-         */
-        
-        // Required to populate the correct number of cells per section
         return data.count
     }
-    
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        /**
-         Sets up and return the cell for a given section and row.
-         
-         - Parameters:
-            - tableView (UITableView): Requests this information.
-            - indexPath(IndexPath): Specifies the section and row.
-         
-         - Returns: A UITableViewCell with the correct formal and information.
-         */
-        
-        // If the element is a Setting, create a Profile cell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: AppConstants.documentCellIdentifier, for: indexPath) as? DocumentCell else {
+            return UITableViewCell()
+        }
         let cellData = data[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: K.documentCellIdentifier, for: indexPath) as! DocumentCell
-        
-        // Set cell attributes as Setting attributes
-        cell.titleLabel.text = cellData.title
-        cell.commentLabel.text = cellData.comment
-        cell.pdfTitleLabel.text = cellData.pdfTitle
+        cell.configure(title: cellData.title, comment: cellData.comment, pdfTitle: cellData.pdfTitle)
         return cell
     }
 }
 
-//MARK: - UITableViewDelegate
+// MARK: - UITableViewDelegate
+
 extension DocumentsViewController: UITableViewDelegate {
-    /**
-     An extention that allows the user to edit their profile.
-     */
-    
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        /**
-         Performs different actions based on the cell that the user selects, including navigating and logging out.
-         
-         - Parameters:
-            - tableView (UITableView): Informs the delegate of the row selection.
-            - indexPath (IndexPath): Specifies the row the user selected.
-         */
-        
-        // Segue to corresponding view controller based on selected cell
-        
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
-    
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        /**
-         Sets the height for the header in each section in the Table View.
-         
-         - Parameters:
-            - tableView (UITableView): Requests this information.
-            - section (Int): Specifies the section the header is for.
-         
-         - Returns: A CGFloat indicating the height of the header.
-         */
-        
         return 20.0
     }
-    
-    
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        /**
-         Creates a transparent UI View to separate the different sections of the Table View.
-         
-         - Parameters:
-            - tableVIew (UITableView): Requests this information.
-            - section (Int): Specifieis the section the header is for.
-         
-         - Returns: An Optional UIView with a clear background for spacing and separation.
-         */
-        
         let headerView = UIView()
         headerView.backgroundColor = .clear
         return headerView

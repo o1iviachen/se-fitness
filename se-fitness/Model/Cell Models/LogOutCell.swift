@@ -7,13 +7,18 @@
 
 import UIKit
 
-class LogOutCell: UITableViewCell {
+// MARK: - LogOutCell
 
-    @IBOutlet weak var logOutLabel: UILabel!
-    
+final class LogOutCell: UITableViewCell {
+
+    // MARK: - IBOutlets
+
+    @IBOutlet private weak var logOutLabel: UILabel!
+
+    // MARK: - Lifecycle
+
     override func awakeFromNib() {
         super.awakeFromNib()
         logOutLabel.font = UIFont(name: "calibri", size: 17)
     }
-    
 }

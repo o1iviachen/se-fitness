@@ -7,15 +7,27 @@
 
 import UIKit
 
-class ExerciseCell: UITableViewCell {
+// MARK: - ExerciseCell
 
-    @IBOutlet weak var orderLabel: UITextField!
-    @IBOutlet weak var exerciseName: UILabel!
-    
+final class ExerciseCell: UITableViewCell {
+
+    // MARK: - IBOutlets
+
+    @IBOutlet private weak var orderLabel: UITextField!
+    @IBOutlet private weak var exerciseName: UILabel!
+
+    // MARK: - Lifecycle
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         orderLabel.font = UIFont(name: "calibri-bold", size: 15)
         exerciseName.font = UIFont(name: "calibri", size: 15)
+    }
+
+    // MARK: - Public Methods
+
+    func configure(orderText: String, exerciseName: String) {
+        orderLabel.text = orderText
+        self.exerciseName.text = exerciseName
     }
 }
