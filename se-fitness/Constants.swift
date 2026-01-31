@@ -30,6 +30,7 @@ enum AppConstants {
     static let proMainSegue = "proToMain"
     static let profileGoalSegue = "proToGoal"
     static let signInPasswordSegue = "signInToPassword"
+    static let inboxToChatSegue = "inboxToChat"
 
     // MARK: - Cell Identifiers
 

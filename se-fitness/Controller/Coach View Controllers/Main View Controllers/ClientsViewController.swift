@@ -21,7 +21,7 @@ final class ClientsViewController: UIViewController {
 
     // MARK: - Properties
 
-    private var data: [User] = [User(firstName: "Olivia", lastName: "Chen", lastWorkoutDate: Date(), nextWorkoutDate: Date())]
+    private var data: [User] = []
     private let firebaseManager = FirebaseManager.shared
     private let dateManager = DateManager.shared
 
@@ -72,7 +72,7 @@ final class ClientsViewController: UIViewController {
                     let athleteLastName = safeAthleteDoc.get("lastName") as? String ?? ""
                     let athleteWorkouts = athletes[athleteUid.key]?["workouts"] as? [String: Any] ?? [:]
                     let workoutDates = self.getClosestWorkouts(athleteWorkouts: athleteWorkouts)
-                    self.data.append(User(firstName: athleteFirstName, lastName: athleteLastName, lastWorkoutDate: workoutDates[0], nextWorkoutDate: workoutDates[1]))
+                    self.data.append(User(uid: athleteUid.key, firstName: athleteFirstName, lastName: athleteLastName, lastWorkoutDate: workoutDates[0], nextWorkoutDate: workoutDates[1], lastMessage: nil))
                 }
             }
         }

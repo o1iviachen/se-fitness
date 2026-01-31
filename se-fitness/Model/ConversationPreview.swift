@@ -12,12 +12,14 @@ struct ConversationPreview {
      A structure for displaying conversation previews in the inbox.
 
      - Properties:
-         - image (UIImage): The user's profile image.
-         - recipient (String): The name of the conversation participant.
-         - message (String): Preview of the last message.
+         - athleteId (String): The UID of the athlete for loading their messages.
+         - athleteName (String): The name of the athlete.
+         - lastMessage (String): Preview of the last message.
+         - image (UIImage): The athlete's profile image.
      */
 
+    let athleteId: String
+    let athleteName: String
+    let lastMessage: String
     let image: UIImage
-    let recipient: String
-    let message: String
 }

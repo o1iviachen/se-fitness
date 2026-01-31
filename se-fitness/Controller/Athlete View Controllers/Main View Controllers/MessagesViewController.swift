@@ -20,12 +20,29 @@ final class MessagesViewController: UIViewController {
     @IBOutlet private weak var messageTextField: UITextField!
     @IBOutlet private weak var sendButton: UIButton!
 
-    // MARK: - Properties
+    // MARK: - Public Properties (for coach view)
+
+    var athleteId: String?
+    var athleteName: String?
+
+    // MARK: - Private Properties
 
     private let firebaseManager = FirebaseManager.shared
     private var messages: [Message] = []
     private var messagesListener: ListenerRegistration?
-    private var coachProfileImage: UIImage?
+    private var otherUserProfileImage: UIImage?
+
+    private var isCoachView: Bool {
+        return athleteId != nil
+    }
+
+    private var currentRole: String {
+        return isCoachView ? "coach" : "athlete"
+    }
+
+    private var targetAthleteId: String {
+        return athleteId ?? Auth.auth().currentUser?.uid ?? ""
+    }
 
     // MARK: - Lifecycle
 
@@ -33,8 +50,45 @@ final class MessagesViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupTableView()
-        loadCoachData()
+        loadHeaderData()
+        loadMessages()
+
+        #if DEBUG
+        addDebugGesture()
+        #endif
     }
+
+    #if DEBUG
+    private func addDebugGesture() {
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(createTestMessages))
+        longPress.minimumPressDuration = 2.0
+        view.addGestureRecognizer(longPress)
+    }
+
+    @objc private func createTestMessages(_ gesture: UILongPressGestureRecognizer) {
+        guard gesture.state == .began,
+              let currentUser = Auth.auth().currentUser else { return }
+
+        let testMessages = [
+            Message(id: "", text: "Hey! How's your training going?", timestamp: Date().addingTimeInterval(-3600), senderId: "coach123", senderRole: "coach"),
+            Message(id: "", text: "Going well! My calf is feeling much better.", timestamp: Date().addingTimeInterval(-3000), senderId: currentUser.uid, senderRole: "athlete"),
+            Message(id: "", text: "Great to hear! Let's increase intensity next week.", timestamp: Date().addingTimeInterval(-2400), senderId: "coach123", senderRole: "coach"),
+            Message(id: "", text: "Sounds good, I'm ready for it!", timestamp: Date().addingTimeInterval(-1800), senderId: currentUser.uid, senderRole: "athlete")
+        ]
+
+        for message in testMessages {
+            firebaseManager.sendMessage(athleteId: targetAthleteId, message: message) { error in
+                if let error = error {
+                    print("Error creating test message: \(error.localizedDescription)")
+                }
+            }
+        }
+
+        let alert = UIAlertController(title: "Debug", message: "Created 4 test messages", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
+    #endif
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -44,8 +98,8 @@ final class MessagesViewController: UIViewController {
     // MARK: - Private Methods
 
     private func setupUI() {
-        messageLabel.font = UIFont(name: "calibri", size: 15) ?? .systemFont(ofSize: 15)
-        coachNameLabel.font = UIFont(name: "calibri-bold", size: 22) ?? .boldSystemFont(ofSize: 22)
+        messageLabel?.font = UIFont(name: "calibri", size: 15) ?? .systemFont(ofSize: 15)
+        coachNameLabel?.font = UIFont(name: "calibri-bold", size: 22) ?? .boldSystemFont(ofSize: 22)
         view.backgroundColor = .white
     }
 
@@ -59,18 +113,21 @@ final class MessagesViewController: UIViewController {
         tableView.estimatedRowHeight = 80
     }
 
-    private func loadCoachData() {
-        guard let currentUser = Auth.auth().currentUser else { return }
-        firebaseManager.getUserData(uid: currentUser.uid, value: "coachName") { [weak self] coachName in
-            guard let self = self else { return }
-            self.coachNameLabel.text = coachName as? String ?? "Your coach"
+    private func loadHeaderData() {
+        if isCoachView {
+            coachNameLabel?.text = athleteName ?? "Athlete"
+            messageLabel?.text = "Chat with athlete"
+        } else {
+            guard let currentUser = Auth.auth().currentUser else { return }
+            firebaseManager.getUserData(uid: currentUser.uid, value: "coachName") { [weak self] coachName in
+                guard let self = self else { return }
+                self.coachNameLabel?.text = coachName as? String ?? "Your coach"
+            }
         }
-        loadMessages()
     }
 
     private func loadMessages() {
-        guard let currentUser = Auth.auth().currentUser else { return }
-        messagesListener = firebaseManager.listenToMessages(athleteId: currentUser.uid) { [weak self] messages in
+        messagesListener = firebaseManager.listenToMessages(athleteId: targetAthleteId) { [weak self] messages in
             guard let self = self else { return }
             self.messages = messages
             self.tableView.reloadData()
@@ -96,16 +153,16 @@ final class MessagesViewController: UIViewController {
             text: text,
             timestamp: Date(),
             senderId: currentUser.uid,
-            senderRole: "athlete"
+            senderRole: currentRole
         )
 
-        firebaseManager.sendMessage(athleteId: currentUser.uid, message: message) { error in
+        firebaseManager.sendMessage(athleteId: targetAthleteId, message: message) { error in
             if let error = error {
                 print("Error sending message: \(error.localizedDescription)")
             }
         }
 
-        firebaseManager.updateLastMessage(athleteId: currentUser.uid, message: text, timestamp: Date())
+        firebaseManager.updateLastMessage(athleteId: targetAthleteId, message: text, timestamp: Date())
         messageTextField.text = ""
     }
 }
@@ -127,8 +184,8 @@ extension MessagesViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         let message = messages[indexPath.row]
-        let isFromCurrentUser = message.senderRole == "athlete"
-        let profileImage = isFromCurrentUser ? nil : coachProfileImage
+        let isFromCurrentUser = message.senderRole == currentRole
+        let profileImage = isFromCurrentUser ? nil : otherUserProfileImage
         cell.configure(message: message, profileImage: profileImage, isFromCurrentUser: isFromCurrentUser)
         return cell
     }

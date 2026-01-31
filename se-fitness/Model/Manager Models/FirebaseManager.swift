@@ -208,4 +208,49 @@ final class FirebaseManager {
             "lastMessageTimestamp": Timestamp(date: timestamp)
         ])
     }
+
+    // MARK: - Athletes
+
+    func getAthletes(coachId: String, completion: @escaping ([User]) -> Void) {
+        /**
+         Fetches all athletes linked to a coach.
+
+         - Parameters:
+            - coachId: The UID of the coach.
+            - completion: Called with an array of User objects representing athletes.
+         */
+        db.collection("users").document(coachId).getDocument { [weak self] document, error in
+            guard let self = self, let document = document, let data = document.data(),
+                  let athletes = data["athletes"] as? [String: Any] else {
+                completion([])
+                return
+            }
+
+            let athleteIds = Array(athletes.keys)
+            var users: [User] = []
+            let group = DispatchGroup()
+
+            for athleteId in athleteIds {
+                group.enter()
+                self.db.collection("users").document(athleteId).getDocument { snapshot, error in
+                    defer { group.leave() }
+                    guard let snapshot = snapshot, let athleteData = snapshot.data() else { return }
+
+                    let user = User(
+                        uid: athleteId,
+                        firstName: athleteData["firstName"] as? String ?? "",
+                        lastName: athleteData["lastName"] as? String ?? "",
+                        lastWorkoutDate: nil,
+                        nextWorkoutDate: nil,
+                        lastMessage: athleteData["lastMessage"] as? String
+                    )
+                    users.append(user)
+                }
+            }
+
+            group.notify(queue: .main) {
+                completion(users)
+            }
+        }
+    }
 }

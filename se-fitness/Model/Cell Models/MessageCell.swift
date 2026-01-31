@@ -64,6 +64,8 @@ final class MessageCell: UITableViewCell {
         configureLayout(isFromCurrentUser: isFromCurrentUser)
     }
 
+    private static let tealColor = UIColor(red: 0.514, green: 0.914, blue: 0.776, alpha: 1.0)
+
     private func configureLayout(isFromCurrentUser: Bool) {
         if isFromCurrentUser {
             // Message on the right, profile hidden or on right
@@ -71,8 +73,8 @@ final class MessageCell: UITableViewCell {
             bubbleTrailingConstraint.priority = .required
             profileLeadingConstraint.priority = .defaultLow
             profileTrailingConstraint.priority = .required
-            bubbleView.backgroundColor = .systemBlue
-            messageLabel.textColor = .white
+            bubbleView.backgroundColor = MessageCell.tealColor
+            messageLabel.textColor = UIColor(named: "dark-grey") ?? .darkGray
             profileImageView.isHidden = true
         } else {
             // Message on the left with profile

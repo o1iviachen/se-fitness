@@ -21,7 +21,8 @@ final class TextCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        profileImageView.layer.cornerRadius = 20
+        profileImageView.layer.cornerRadius = 30
+        profileImageView.clipsToBounds = true
         recipientLabel.font = UIFont(name: "calibri-bold", size: 17)
         messageLabel.font = UIFont(name: "calibri", size: 15)
     }
