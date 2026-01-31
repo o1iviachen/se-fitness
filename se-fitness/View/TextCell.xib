@@ -56,7 +56,7 @@
             <connections>
                 <outlet property="profileImageView" destination="qLf-Ci-gFb" id="WD9-Yc-73s"/>
                 <outlet property="recipientLabel" destination="lYz-5c-4yD" id="W5k-00-TDu"/>
-                <outlet property="textLabel" destination="re6-Z0-kGl" id="c4W-Pa-Yig"/>
+                <outlet property="messageLabel" destination="re6-Z0-kGl" id="c4W-Pa-Yig"/>
             </connections>
             <point key="canvasLocation" x="22.900763358778626" y="40.140845070422536"/>
         </tableViewCell>

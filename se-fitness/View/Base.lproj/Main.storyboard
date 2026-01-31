@@ -1000,6 +1000,10 @@
                                     <constraint firstItem="cbo-H2-05Z" firstAttribute="leading" secondItem="az6-f7-qRa" secondAttribute="leading" constant="30" id="ujz-nj-FW1"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="msg-tbl-view">
+                                <rect key="frame" x="0.0" y="170.33333333333334" width="393" height="500.33333333333331"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="ctz-A8-BkN">
                                 <rect key="frame" x="20" y="685.66666666666663" width="353" height="34.333333333333371"/>
                                 <subviews>
@@ -1028,6 +1032,9 @@
                                         <buttonConfiguration key="configuration" style="plain" image="paperplane" catalog="system">
                                             <color key="baseForegroundColor" name="dark-grey"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="sendButtonTapped:" destination="I5l-wZ-zlf" eventType="touchUpInside" id="send-action"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -1042,6 +1049,10 @@
                             <constraint firstItem="az6-f7-qRa" firstAttribute="height" secondItem="KKC-ls-qbo" secondAttribute="height" multiplier="0.2" id="a9V-kd-DYy"/>
                             <constraint firstAttribute="trailing" secondItem="az6-f7-qRa" secondAttribute="trailing" id="nXV-cM-eMQ"/>
                             <constraint firstItem="az6-f7-qRa" firstAttribute="leading" secondItem="KKC-ls-qbo" secondAttribute="leading" id="rtf-OE-2zn"/>
+                            <constraint firstItem="msg-tbl-view" firstAttribute="top" secondItem="az6-f7-qRa" secondAttribute="bottom" id="tbl-top-con"/>
+                            <constraint firstItem="msg-tbl-view" firstAttribute="leading" secondItem="KKC-ls-qbo" secondAttribute="leading" id="tbl-lead-con"/>
+                            <constraint firstAttribute="trailing" secondItem="msg-tbl-view" secondAttribute="trailing" id="tbl-trail-con"/>
+                            <constraint firstItem="ctz-A8-BkN" firstAttribute="top" secondItem="msg-tbl-view" secondAttribute="bottom" constant="15" id="tbl-bot-con"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Messages" image="message.fill" catalog="system" id="XdW-Ao-oUS">
@@ -1050,6 +1061,9 @@
                     <connections>
                         <outlet property="coachNameLabel" destination="IYu-B4-2ex" id="gZk-uj-zWH"/>
                         <outlet property="messageLabel" destination="VYI-8l-Icz" id="D43-65-RCT"/>
+                        <outlet property="tableView" destination="msg-tbl-view" id="tbl-outlet"/>
+                        <outlet property="messageTextField" destination="3Mt-eP-X1L" id="txt-outlet"/>
+                        <outlet property="sendButton" destination="NmB-8F-rHH" id="send-outlet"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5sE-sm-Ixy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1186,9 +1200,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="HJB-g6-6HY"/>
-        <segue reference="T6A-gc-WUc"/>
-        <segue reference="i37-IU-CnJ"/>
+        <segue reference="hAw-tG-F7r"/>
+        <segue reference="QVF-aW-vQR"/>
+        <segue reference="bKu-tX-oa9"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.left" catalog="system" width="128" height="95"/>

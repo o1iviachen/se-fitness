@@ -7,36 +7,55 @@
 
 import Firebase
 
+// MARK: - FirebaseError
 
-struct FirebaseManager {
-    let db = Firestore.firestore()
-    let alertManager = AlertManager()
+enum FirebaseError: Error {
+    case documentNotFound
+    case fieldNotFound(String)
+    case networkError(Error)
+    case unknown
+}
+
+// MARK: - FirebaseManager
+
+final class FirebaseManager {
+
+    // MARK: - Properties
+
+    static let shared = FirebaseManager()
+    private let db = Firestore.firestore()
+
+    // MARK: - Initialization
+
+    private init() {}
     
-//    func fetchUserDocument(completion: @escaping (DocumentSnapshot?) -> Void) {
-//        /**
-//         Fetches a Firebase Firestore document authorized through the user's email.
-//         
-//         - Parameters:
-//            - completion (Optional DocumentSnapshot): Stores the Firebase Firestore information at the time of the call.
-//         */
-//        
-//        db.collection("users").document((Auth.auth().currentUser?.email)!).getDocument { document, error in
-//            
-//            // If an error occurs in fetching document, call completion handler with no document snapshot (nil); code from https://cloud.google.com/firestore/docs/manage-data/add-data
-//            guard let document = document else {
-//                completion(document)
-//                return
-//            }
-//            
-//            // If the document is empty, call completion handler with no document snapshot (nil)
-//            guard document.data() != nil else {
-//                completion(document)
-//                return
-//            }
-//            
-//            completion(document)
-//        }
-//    }
+    // MARK: - Public Methods
+
+    func fetchUserDocument(uid: String, completion: @escaping (DocumentSnapshot?) -> Void) {
+        /**
+         Fetches a Firebase Firestore document authorized through the user's email.
+
+         - Parameters:
+            - completion (Optional DocumentSnapshot): Stores the Firebase Firestore information at the time of the call.
+         */
+
+        db.collection("users").document(uid).getDocument { document, error in
+
+            // If an error occurs in fetching document, call completion handler with no document snapshot (nil); code from https://cloud.google.com/firestore/docs/manage-data/add-data
+            guard let document = document else {
+                completion(document)
+                return
+            }
+
+            // If the document is empty, call completion handler with no document snapshot (nil)
+            guard document.data() != nil else {
+                completion(document)
+                return
+            }
+
+            completion(document)
+        }
+    }
     
     func createUserDocument(firstName: String, lastName: String, role: String, coachId: String?, email: String, uid: String) {
         var userData: [String: Any] = [
@@ -79,16 +98,17 @@ struct FirebaseManager {
     
     func generateUniqueCoachId(completion: @escaping (String?) -> Void) {
         let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-        let coachId = String((0..<6).map { _ in characters.randomElement()! })
-        
-        db.collection("users").whereField("coachId", isEqualTo: coachId).getDocuments { snapshot, error in
+        let coachId = String((0..<6).compactMap { _ in characters.randomElement() })
+
+        db.collection("users").whereField("coachId", isEqualTo: coachId).getDocuments { [weak self] snapshot, error in
+            guard let self = self else { return }
             if let error = error {
-                completion(nil) // or completion(error.localizedDescription) if you want to return the error string
+                completion(error.localizedDescription)
             } else if snapshot?.isEmpty == true {
                 completion(coachId)
             } else {
                 // Try again if not unique
-                generateUniqueCoachId(completion: completion)
+                self.generateUniqueCoachId(completion: completion)
             }
         }
     }
@@ -112,15 +132,80 @@ struct FirebaseManager {
             if let error = error {
                 completion(error.localizedDescription)
             } else if let doc = snapshot?.documents.first {
-                let athleteData = ["workouts": [], "documents": []]
-                doc.reference.updateData(["athletes.\(athleteUid)" : athleteData]) { error in
+                let athleteData: [String: Any] = ["workouts": [], "documents": []]
+                doc.reference.updateData(["athletes.\(athleteUid)": athleteData]) { error in
                     if let error = error {
-                        print("Error writing to user document: \(error)")
+                        completion("Error writing to user document: \(error)")
+                    } else {
+                        completion(nil)
                     }
                 }
             } else {
-                completion(nil)
+                completion("Coach not found")
             }
         }
+    }
+
+    // MARK: - Messages
+
+    func sendMessage(athleteId: String, message: Message, completion: @escaping (Error?) -> Void) {
+        /**
+         Sends a message to the athlete's messages subcollection.
+
+         - Parameters:
+            - athleteId: The UID of the athlete (messages are stored under their document).
+            - message: The Message object to send.
+            - completion: Called with nil on success or an Error on failure.
+         */
+        db.collection("users").document(athleteId).collection("messages").addDocument(data: message.dictionary) { error in
+            completion(error)
+        }
+    }
+
+    func listenToMessages(athleteId: String, completion: @escaping ([Message]) -> Void) -> ListenerRegistration {
+        /**
+         Listens for real-time updates to an athlete's messages subcollection.
+
+         - Parameters:
+            - athleteId: The UID of the athlete whose messages to listen to.
+            - completion: Called with an array of Messages whenever data changes.
+         - Returns: A ListenerRegistration that can be used to remove the listener.
+         */
+        return db.collection("users").document(athleteId).collection("messages")
+            .order(by: "timestamp", descending: false)
+            .addSnapshotListener { snapshot, error in
+                guard let documents = snapshot?.documents else {
+                    completion([])
+                    return
+                }
+                let messages = documents.compactMap { Message(document: $0) }
+                completion(messages)
+            }
+    }
+
+    func markMessageAsRead(athleteId: String, messageId: String) {
+        /**
+         Marks a message as read.
+
+         - Parameters:
+            - athleteId: The UID of the athlete.
+            - messageId: The document ID of the message to mark as read.
+         */
+        db.collection("users").document(athleteId).collection("messages").document(messageId).updateData(["read": true])
+    }
+
+    func updateLastMessage(athleteId: String, message: String, timestamp: Date) {
+        /**
+         Updates the lastMessage fields on the athlete's user document for inbox previews.
+
+         - Parameters:
+            - athleteId: The UID of the athlete.
+            - message: The message text preview.
+            - timestamp: When the message was sent.
+         */
+        db.collection("users").document(athleteId).updateData([
+            "lastMessage": message,
+            "lastMessageTimestamp": Timestamp(date: timestamp)
+        ])
     }
 }

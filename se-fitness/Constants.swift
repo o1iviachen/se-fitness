@@ -8,11 +8,15 @@
 import Foundation
 import UIKit
 
-struct K {
+// MARK: - AppConstants
+
+enum AppConstants {
     /**
-     A structure to store static Strings used throughout the app.
+     An enum to store static Strings used throughout the app.
      */
-    
+
+    // MARK: - Segues
+
     static let signInAthleteTabSegue = "signInToAthleteTab"
     static let signUpAthleteTabSegue = "signUpToAthleteTab"
     static let signInCoachTabSegue = "signInToCoachTab"
@@ -22,23 +26,30 @@ struct K {
     static let signUpCodeSegue = "signUpToCode"
     static let profileContactSegue = "proToContact"
     static let profileDocumentSegue = "proToDocuments"
+    static let searchSegue = "searchSegue"
+    static let proMainSegue = "proToMain"
+    static let profileGoalSegue = "proToGoal"
+    static let signInPasswordSegue = "signInToPassword"
 
-    
+    // MARK: - Cell Identifiers
+
     static let profileCellIdentifier = "ProfileCell"
     static let documentCellIdentifier = "DocumentCell"
     static let goalCellIdentifier = "GoalCell"
     static let workoutCellIdentifier = "WorkoutCell"
     static let exerciseCellIdentifier = "ExerciseCell"
     static let logOutCellIdentifier = "LogOutCell"
-    static let searchSegue = "searchSegue"
-    static let proMainSegue = "proToMain"
-    static let profileGoalSegue = "proToGoal"
     static let textCellIdentifier = "TextCell"
- 
-    static let signInPasswordSegue = "signInToPassword"
+    static let userCellIdentifier = "UserCell"
+    static let messageCellIdentifier = "MessageCell"
+
+    // MARK: - Storyboard Identifiers
 
     static let welcomeIdentifier = "NavigationController"
     static let coachTabBarIdentifier = "CoachTabBarController"
     static let athleteTabBarIdentifier = "AthleteTabBarController"
-
 }
+
+// MARK: - Typealias for backward compatibility
+
+typealias K = AppConstants
